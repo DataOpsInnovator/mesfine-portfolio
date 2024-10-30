@@ -1,6 +1,6 @@
 # Mefine Ayelew - Professional Portfolio
 
-Welcome to my professional portfolio! This repository showcases my skills, projects, and experiences in the fields of SQL Database Administration, Cloud Computing, and DevOps Engineering.
+Welcome to my professional portfolio! This repository showcases my skills, projects, and experiences in the fields of Cloud Computing, DevOps Engineering, Bussiness Intellegence Data Analyst, and SQL Database Administration.
 
 ## About Me
 I am a dedicated professional passionate about optimizing database performance and developing scalable cloud-native solutions. I have a strong background in AWS, Azure, and Terraform, and I enjoy tackling complex challenges in the tech industry.
