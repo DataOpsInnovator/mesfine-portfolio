@@ -37,7 +37,7 @@ You can view the live demo of my portfolio [here](https://dataopsinnovator.githu
 - **Version Control:** Git, GitHub
 - **Business Intelligence:** Power BI, Tableau
 - **Development Tools:** Visual Studio Code, Docker, Terraform
-- ** Mulesoft Integration:** Anypoint Studio, Anypoint Platform, DataWeave Language
+- Mulesoft Integration: Anypoint Studio, Anypoint Platform, DataWeave Language
 
 ## Installation
 
