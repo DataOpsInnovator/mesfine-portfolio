@@ -60,8 +60,6 @@ Feel free to reach out to me via:
 - GitHub: [DataOpsInnovator](https://github.com/DataOpsInnovator)
 - LinkedIn: [mefine-ayelew](https://www.linkedin.com/in/mefine-ayelew)
 
-## How to View
-You can view my portfolio live at: [https://dataopsinnovator.github.io/MefineAyelew-Portfolio/](https://dataopsinnovator.github.io/MefineAyelew-Portfolio/).
 
 Thank you for visiting my portfolio!
 
