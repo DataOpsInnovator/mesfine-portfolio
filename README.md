@@ -30,8 +30,6 @@ You can view the live demo of my portfolio [here](https://dataopsinnovator.githu
 
 ## Technologies
 
-## Technologies
-
 - **Languages:** SQL, Python, Java, PowerShell
 - **Cloud Platforms:** AWS, Azure
 - **Database Management:** MySQL, PostgreSQL, Microsoft SQL Server
