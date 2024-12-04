@@ -22,7 +22,7 @@ You can view the live demo of my portfolio [here](https://dataopsinnovator.githu
 
 ## Projects
 
-- **[ShopSmartlytoday Website](https://dataopsinnovator.github.io/ShopSmartlytoday.com-AWS/):** Developed an e-commerce platform with secure payment systems.
+- **[ShopSmartlytoday Website](https://dataopsinnovator.github.io/ShopSmartlytoday-eCommerce/):** Developed an e-commerce platform with secure payment systems.
 - **Auto Scaling with AWS:** Implemented an auto-scaling architecture for high availability.
 - **Automated Database Backup System:** Designed and implemented a cloud-based automated backup solution for MySQL databases on AWS.
 - **CI/CD Pipeline for Application Deployment:** Built an automated CI/CD pipeline using Azure DevOps for microservices deployment with Docker and Kubernetes.
