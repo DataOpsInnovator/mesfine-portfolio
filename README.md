@@ -18,7 +18,7 @@ I am a dedicated professional passionate about optimizing database performance a
 
 ## Demo
 
-You can view the live demo of my portfolio [here](https://github.com/DataOpsInnovator/Mefine-Ayelew-Portfolio).
+You can view the live demo of my portfolio [here](https://dataopsinnovator.github.io/Mefine-Ayelew-Portfolio/).
 
 ## Projects
 
