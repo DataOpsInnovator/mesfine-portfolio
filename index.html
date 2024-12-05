@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,6 +83,18 @@ footer {
 .btn:hover {
     background-color: #16a085;
 }
+
+/* Additional Styles for Profile Picture */
+.profile-img {
+    width: 120px; /* Set a fixed size */
+    height: 120px; /* Set a fixed size */
+    border-radius: 50%; /* Make the image circular */
+    position: absolute; /* Position the image absolutely */
+    top: 20px; /* Adjust the top position */
+    left: 20px; /* Adjust the left position */
+    object-fit: cover; /* Ensure the image fits well inside the circle */
+    border: 3px solid #fff; /* Optional: Add a border for better visibility */
+}
 </style>
 </head>
 <body>
@@ -109,7 +120,11 @@ footer {
 <!-- About Section -->
 <section id="about">
     <h2>About Me</h2>
-    <p>Hello! I’m Mefine Ayelew, a professional with expertise in Database Administration, Cloud Computing, and DevOps Engineering. I’m passionate about optimizing database performance, developing cloud-native solutions, and enhancing application scalability. I’m dedicated to delivering high-impact, optimized systems that empower businesses to operate more efficiently and effectively in dynamic environments.</p>
+    <div class="profile">
+        <!-- Profile Picture -->
+        <img src="images/profile.jpg" alt="Mefine Ayelew" class="profile-img">
+        <p>I am an experienced Cloud and DevOps Engineer with over 6 years of expertise in designing, deploying, and managing high-performance cloud solutions using AWS, Azure, and DevOps practices. I specialize in database administration, cloud computing, and automation, focusing on creating scalable, secure, and efficient infrastructures for mission-critical applications. Passionate about driving innovation through cloud-native solutions, CI/CD pipelines, and infrastructure as code, I tackle complex technical challenges while ensuring systems remain highly available, secure, and compliant. Proficient in DevOps tools like Terraform, Docker, Kubernetes, and Jenkins, I aim to automate processes, reduce overhead, and enhance team collaboration. Committed to continuous learning, I seek to contribute my skills in a fast-paced, innovative environment to drive business growth and operational excellence.</p>
+    </div>
 </section>
 
 <!-- Professional Summary Section -->
@@ -129,10 +144,10 @@ footer {
         <li>Containerization (Docker, Kubernetes,AWS ECS, EKS)</li>
         <li>Infrastructure Automation: Terraform, CloudFormation, AWS CodePipeline</li>
         <li>DevOps Tools: Jenkins, GitLab CI/CD, Docker, Kubernetes, Terraform,  Azure DevOps</li>
-	<li>Monitoring & Reporting: AWS CloudWatch, CloudTrail</li>
-	<li>Database: MySQL, PostgreSQL, MongoDB, DynamoDB</li>
+        <li>Monitoring & Reporting: AWS CloudWatch, CloudTrail</li>
+        <li>Database: MySQL, PostgreSQL, MongoDB, DynamoDB</li>
         <li>Data Analytics and Business Intelligence</li>
-	<li>Security & Compliance: AWS IAM, AWS KMS, Encryption, RBAC</li>
+        <li>Security & Compliance: AWS IAM, AWS KMS, Encryption, RBAC</li>
         <li>Network Security and Firewalls</li>
         <li>Programming & Scripting: SQL, Python, PowerShell, Bash</li>
     </ul>
@@ -151,19 +166,18 @@ footer {
     <ul>
         <li>
             <strong>ShopSmartlytoday Website:</strong> Developed an e-commerce platform with secure payments.
-            <a href="https://github.com/DataOpsInnovator/ShopSmartlytoday.com-AWS" target="_blank">View GitHub Repo</a> |
-            <a href="https://dataopsinnovator.github.io/ShopSmartlytoday.com-AWS/" target="_blank">Live Demo</a>
+            <a href="https://github.com/DataOpsInnovator/ShopSmartlytoday-eCommerce" target="_blank">View GitHub Repo</a> |
+            <a href="https://dataopsinnovator.github.io/ShopSmartlytoday-eCommerce/" target="_blank">Live Demo</a>
         </li>
         <li><strong>Auto Scaling with AWS:</strong> Implemented an auto-scaling architecture for high availability.</li>
         <li><strong>Automated Database Backup System:</strong> Implemented a cloud-based automated backup solution for MySQL databases on AWS to ensure data integrity and availability.</li>
         <li><strong>CI/CD Pipeline for Application Deployment:</strong> Built a CI/CD pipeline using Azure DevOps, automating the deployment of microservices with Docker and Kubernetes for improved operational efficiency.</li>
         <li><strong>Data Analytics Dashboard:</strong> Developed a Power BI dashboard integrating multiple data sources for visualizing business metrics and improving decision-making processes.</li>
         <li><strong>Personal Portfolio:</strong> Showcase of my professional projects and skills.
-            <a href="https://dataopsinnovator.github.io/MefineAyelew-Portfolio/" target="_blank">View Portfolio</a>
+            <a href="https://github.com/DataOpsInnovator/Mefine-Ayelew-Portfolio" target="_blank">View Portfolio</a>
         </li>
     </ul>
 </section>
-
 
 <!-- Education Section -->
 <section id="education">
