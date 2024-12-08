@@ -8,7 +8,7 @@ I am a dedicated professional passionate about optimizing database performance a
 ## Contents
 - **About Me**: A brief introduction to my professional background and expertise.
 - **Projects**: Details of key projects I've worked on, including:
-  - ShopSmartlytoday.com Website Development
+  - ShopSmartlytoday.com eCommerce Website Development
   - Customer Onboarding for Investment Banking
   - Healthcare Patient Management System
   - Real Estate Property Management Solution
