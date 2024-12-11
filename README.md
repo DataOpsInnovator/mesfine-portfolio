@@ -1,4 +1,4 @@
-# Mefine Ayelew - Professional Portfolio
+# Mesfine Ayelew - Professional Portfolio
 
 Welcome to my professional portfolio! This repository showcases my skills, projects, and experiences in the fields of SQL Database Administration, Cloud Computing, and DevOps Engineering.
 
