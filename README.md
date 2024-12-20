@@ -21,7 +21,7 @@ I am a dedicated professional passionate about optimizing database performance a
 ## Contact Information
 Feel free to reach out to me:
 - **Email**: mefinealew@gmail.com
-- **LinkedIn**: [Mefine Ayelew's LinkedIn Profile](https://www.linkedin.com/in/mefine-ayelew)
+- **LinkedIn**: [Mefine Ayelew's LinkedIn Profile]
 - **GitHub**: [DataOpsInnovator](https://github.com/DataOpsInnovator)
 
 ## How to View
