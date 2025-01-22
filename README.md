@@ -25,6 +25,6 @@ Feel free to reach out to me:
 - **GitHub**: [DataOpsInnovator](https://github.com/DataOpsInnovator)
 
 ## How to View
-You can view my portfolio live at: https://dataopsinnovator.github.io/MesfinePortfolio/.
+You can view my portfolio live at: https://dataopsinnovator.github.io/mesfine-portfolio/.
 
 Thank you for visiting my portfolio!
