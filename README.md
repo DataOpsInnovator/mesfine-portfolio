@@ -1,6 +1,6 @@
 # Mesfin Getachew - Professional Portfolio
 
-Welcome to my professional portfolio! This repository showcases my skills, projects, and experiences in the fields of Cloud Computing, DevOps Engineering, and Systems Administration.
+Welcome to my professional portfolio website! This repository showcases my skills, projects, and experiences in the fields of Cloud Computing, DevOps Engineering, and Systems Administration.
 
 ## About Me
 I am a dedicated professional passionate about optimizing database performance and developing scalable cloud-native solutions. I have a strong background in AWS, Azure, and Terraform, and I enjoy tackling complex challenges in the tech industry.
