@@ -3,78 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>John Dave - Cloud & DevOps Engineer</title>
+  <title>John Dave - Professional Portfolio</title>
   <meta name="description" content="Cloud & DevOps Engineer Portfolio showcasing skills, projects, certifications, and experience in AWS, Azure, GCP, Terraform, Kubernetes, CI/CD, and DevSecOps.">
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset & Typography */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; scroll-behavior: smooth; background: #f4f4f4; color: #333; font-size: 18px; }
-    h2 { color: #2980b9; font-size: 2em; margin-bottom: 15px; }
-    h3 { font-size: 1.3em; margin-bottom: 10px; }
-    a { text-decoration: none; }
+    body { font-family:'Inter',sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333; font-size:18px; line-height:1.6; scroll-behavior:smooth; }
+    header { background:#2c3e50; color:white; text-align:center; padding:15px 0; position:sticky; top:0; z-index:1000; }
+    header nav { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
+    header nav a { color:#ecf0f1; text-decoration:none; font-weight:600; font-size:1em; padding:8px 12px; border-radius:4px; transition:0.3s; }
+    header nav a:hover { background:#1abc9c; color:#fff; }
 
-    /* Header / Navigation */
-    header { background-color: #2c3e50; color: white; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
-    header nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
-    header nav a { color: #ecf0f1; font-weight: bold; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
-    header nav a:hover { background-color: #1abc9c; color: #fff; }
+    section { padding:40px 25px; background:white; margin:15px auto; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08); max-width:1200px; opacity:0; transform:translateY(40px) scale(0.98); transition:all 0.8s ease; }
+    section.visible { opacity:1; transform:translateY(0) scale(1); }
+    section:nth-of-type(even){ background:#f9fbfc; }
 
-    /* Hero Section */
-    #hero { color: white; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 20px; position: relative; z-index: 1; background: linear-gradient(135deg, #2980b9, #2c3e50, #16a085, #1abc9c); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
-    @keyframes gradientShift { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
+    h1,h2,h3{ margin:0 0 15px; }
+    h1{ font-size:3em; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
+    h2{ color:#2980b9; font-size:2em; }
+    h3{ font-size:1.4em; margin-bottom:10px; color:#2980b9; }
 
-    #hero img.hero-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid white; object-fit: cover; margin-bottom: 25px; transform: translateY(40px); opacity: 0; transition: all 0.8s ease; }
-    #hero img.hero-img:hover { transform: scale(1.05); }
-    #hero h1.hero-title { font-size: 3em; margin-bottom: 15px; line-height:1.2; transform: translateY(40px); opacity:0; transition: all 0.8s ease; }
-    #hero p.hero-subtitle { font-size: 1.3em; max-width: 700px; margin:0 auto 30px; line-height:1.5; transform: translateY(40px); opacity:0; transition: all 0.8s ease; }
-    #hero .hero-btn { display:inline-block; padding:14px 28px; font-size:1.1em; font-weight:bold; border-radius:6px; color:white; background-color:#1abc9c; transform: translateY(40px); opacity:0; transition: all 0.8s ease; }
-    #hero .hero-btn:hover { background-color:#16a085; transform: scale(1.05); }
-    .scroll-down-arrow { position: absolute; bottom:30px; font-size:2em; color:white; animation:bounce 2s infinite; transition: color 0.3s ease; z-index:2; }
-    .scroll-down-arrow:hover { color:#1abc9c; }
-    @keyframes bounce { 0%,20%,50%,80%,100%{ transform:translateY(0); } 40%{ transform:translateY(-10px); } 60%{ transform:translateY(-5px); } }
+    ul, li{ list-style:none; padding:0; margin:5px 0; }
 
-    /* Sections */
-    section { padding: 25px; background-color: white; margin: 15px auto; border-radius: 5px; box-shadow:0 2px 10px rgba(0,0,0,0.1); max-width:1200px; opacity:0; transform: translateY(40px); transition: all 0.8s ease; }
-    section.visible { opacity:1; transform:translateY(0); }
-    ul, li { list-style-type:none; padding:0; margin:5px 0; }
+    /* Hero */
+    #hero { background:linear-gradient(135deg,#4facfe,#00f2fe); color:white; text-align:center; padding:120px 20px; position:relative; }
+    #hero img { width:150px; height:150px; border-radius:50%; border:3px solid white; object-fit:cover; margin-bottom:20px; }
+    #hero p { font-size:1.3em; max-width:700px; margin:0 auto 30px; }
 
-    /* Buttons */
-    .btn { display:inline-block; padding:12px 24px; margin:15px 0; color:white; background-color:#1abc9c; border-radius:5px; font-weight:bold; font-size:1.05em; transition: transform 0.3s ease, background 0.3s ease; }
-    .btn:hover { background-color:#16a085; transform: scale(1.05); }
+    .btn { display:inline-block; padding:12px 24px; margin:15px 0; color:white; background:linear-gradient(135deg,#1de099,#1dc8cd); text-decoration:none; border-radius:5px; font-weight:600; font-size:1.05em; box-shadow:0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .btn:hover { transform:scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.25); }
 
-    /* Projects Section */
-    .projects-controls { margin-bottom: 20px; display:flex; flex-wrap:wrap; gap:10px; justify-content: space-between; }
-    .projects-controls input { padding:6px 10px; border-radius:4px; border:1px solid #ccc; flex-grow:1; min-width:200px; }
-    .filter-buttons button { padding:6px 12px; border:none; border-radius:4px; cursor:pointer; background-color:#2980b9; color:#fff; transition:0.3s; }
-    .filter-buttons .active { background-color:#1abc9c; }
+    /* Projects */
     .projects-container { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
-    .project-card { background-color:white; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .project-card:hover { transform: translateY(-8px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+    .project-card { background:white; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; position:relative; }
+    .project-card:hover { transform:translateY(-10px) scale(1.02); box-shadow:0 12px 25px rgba(0,0,0,0.2); }
+    .project-card .badge { position:absolute; top:10px; right:10px; background:#1abc9c; color:white; padding:4px 8px; border-radius:5px; font-size:0.8em; font-weight:600; }
     .project-image { width:100%; height:200px; object-fit:cover; border-bottom:1px solid #ddd; }
     .project-content { padding:15px; }
-    .project-content h3 { margin:10px 0; color:#2980b9; }
     .project-links .btn { padding:8px 16px; font-size:0.95em; margin-right:5px; margin-bottom:5px; }
 
-    /* Skills */
-    #skills ul li span { font-weight:bold; }
+    #skills ul li span{ font-weight:600; }
 
     /* Back to Top */
-    #backToTop { position:fixed; bottom:30px; right:30px; background-color:#2980b9; color:white; padding:12px 16px; border-radius:50%; cursor:pointer; font-size:1.4em; display:none; z-index:999; }
-    #backToTop:hover { background-color:#1abc9c; }
+    #backToTop { position:fixed; bottom:30px; right:30px; background:#2980b9; color:white; padding:12px 16px; border-radius:50%; cursor:pointer; font-size:1.4em; display:none; z-index:999; }
+    #backToTop:hover { background:#1abc9c; }
 
-    /* Footer */
-    footer { background-color:#0b1d33; color:white; text-align:center; padding:20px 0; }
+    /* Project Filter */
+    .projects-controls { margin-bottom:20px; display:flex; flex-wrap:wrap; gap:10px; }
+    .projects-controls input { padding:6px 10px; border-radius:4px; border:1px solid #ccc; flex-grow:1; }
+    .filter-buttons button { padding:6px 12px; border:none; border-radius:4px; cursor:pointer; background:#2980b9; color:#fff; }
+    .filter-buttons .active { background:#1abc9c; }
 
-    /* Responsive */
-    @media (max-width:1024px){#hero h1.hero-title{font-size:2.5em;} #hero p.hero-subtitle{font-size:1.15em;} #hero img.hero-img{width:130px;height:130px;} }
-    @media (max-width:768px){#hero h1.hero-title{font-size:2em;} #hero p.hero-subtitle{font-size:1em;} #hero img.hero-img{width:120px;height:120px;} }
-    @media (max-width:480px){#hero h1.hero-title{font-size:1.7em;} #hero p.hero-subtitle{font-size:0.95em;} #hero img.hero-img{width:100px;height:100px;} #hero .hero-btn{padding:12px 24px;font-size:1em;} }
+    footer { background:linear-gradient(135deg,#0b1d33,#011826); color:white; text-align:center; padding:20px 0; }
   </style>
 </head>
 <body>
 
-<!-- Header Navigation -->
 <header>
   <nav>
     <a href="#hero">Home</a>
@@ -89,38 +75,39 @@
   </nav>
 </header>
 
-<!-- Hero Section -->
 <section id="hero">
-  <img src="images/profile.jpg" alt="John Dave" class="hero-img">
-  <h1 class="hero-title">John Dave</h1>
-  <p class="hero-subtitle">Senior Cloud & DevOps Engineer | AWS, Azure, GCP | CI/CD, Terraform, Kubernetes | Automating Scalable & Secure Infrastructure</p>
-  <a href="#contact" class="btn hero-btn">Get in Touch</a>
-  <a href="#about" class="scroll-down-arrow">&#x2193;</a>
+  <img src="images/profile.jpg" alt="John Dave, Senior Cloud & DevOps Engineer">
+  <h1>John Dave</h1>
+  <p>Senior Cloud & DevOps Engineer | AWS | Azure | GCP | CI/CD | Terraform | Kubernetes | Automating Scalable & Secure Infrastructure</p>
+  <a href="#resume" class="btn">Download Resume</a>
 </section>
 
-<!-- About Me -->
 <section id="about">
   <h2>About Me</h2>
-  <p>I'm a Cloud and DevOps Engineer with 7+ years of experience designing, deploying, and managing scalable, secure infrastructure across AWS, Azure, and GCP. I focus on building cloud-native environments that support high availability, performance, and reliability for modern applications.</p>
-  <p>I believe in delivering solutions that are efficient, maintainable, and aligned with business goals. Whether automating deployments, optimizing cloud costs, or collaborating across teams, I aim to improve every part of the delivery pipeline. I’m continuously learning and passionate about applying new technologies to solve complex infrastructure challenges.</p>
+  <p>Cloud & DevOps Engineer with 7+ years of experience designing, deploying, and managing scalable, secure cloud infrastructure. I specialize in automated, cost-efficient, and resilient environments that accelerate business value.</p>
+  <ul>
+    <li><strong>Cloud Infrastructure:</strong> Designed and managed multi-cloud environments for high availability and performance.</li>
+    <li><strong>Automation & CI/CD:</strong> Implemented Infrastructure as Code with Terraform, CloudFormation, CDK; reduced deployment time by 50%.</li>
+    <li><strong>Containers & Orchestration:</strong> Deployed Kubernetes clusters (EKS, ECS, AKS) and Dockerized applications for scalable microservices.</li>
+    <li><strong>Monitoring & Security:</strong> Built centralized logging, enforced IAM/DevSecOps best practices for SOC II readiness.</li>
+    <li><strong>Collaboration:</strong> Worked cross-functionally to deliver reliable, maintainable infrastructure solutions.</li>
+  </ul>
 </section>
 
-<!-- Skills & Tools -->
 <section id="skills">
-  <h2>Skills & Tools</h2>
+  <h2>Skills and Tools</h2>
   <ul>
-    <li><span>Cloud Platforms:</span> AWS (EC2, Lambda, S3, RDS, DynamoDB, VPC, ECS, EKS, CloudFormation, CDK, CloudWatch, Route53, IAM, KMS, Shield, WAF), Azure (VMs, Networking, App Services, Azure DevOps, Active Directory, RBAC), GCP (Foundational Knowledge)</li>
+    <li><span>Cloud Platforms:</span> AWS (EC2, Lambda, S3, RDS, DynamoDB, VPC, ECS, EKS, CloudFormation, CDK, CloudWatch, Route 53, IAM, KMS, Shield, WAF), Azure (VMs, Networking, App Services, Azure DevOps, Active Directory, RBAC), GCP (Foundational Knowledge)</li>
     <li><span>DevOps & Automation:</span> Terraform, Ansible, CloudFormation, AWS CDK, Jenkins, GitHub Actions, GitLab CI, Azure DevOps, GitOps</li>
     <li><span>Containers & Orchestration:</span> Docker, Kubernetes (EKS, ECS, AKS), Helm</li>
     <li><span>Monitoring & Observability:</span> Prometheus, Grafana, Datadog, Dynatrace, CloudWatch, CloudTrail, Centralized Logging & Alerting</li>
-    <li><span>Security & Governance:</span> IAM, RBAC, HashiCorp Vault, KMS, DevSecOps, compliance (SOC II readiness)</li>
+    <li><span>Security & Governance:</span> IAM, RBAC, HashiCorp Vault, KMS, DevSecOps, SOC II compliance</li>
     <li><span>Programming & Scripting:</span> Python, Bash, PowerShell, Java, YAML</li>
     <li><span>Databases:</span> MySQL, DynamoDB, MongoDB, PostgreSQL</li>
     <li><span>Collaboration:</span> Jira, Confluence, Slack, Microsoft Teams, Agile/Scrum</li>
   </ul>
 </section>
 
-<!-- Projects Section -->
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects-controls">
@@ -134,87 +121,140 @@
     </div>
   </div>
   <div class="projects-container">
+
     <div class="project-card" data-category="web">
+      <div class="badge">Web</div>
       <img src="images/shop-smartly-logo.png" class="project-image">
       <div class="project-content">
         <h3>E-Commerce Platform</h3>
         <p>Fully functional e-commerce platform with payment integration and inventory management.</p>
+        <ul>
+          <li>Implemented secure payment gateways and inventory tracking.</li>
+          <li>Enhanced user experience with responsive design.</li>
+        </ul>
         <div class="project-links">
           <a href="https://dataopsinnovator.github.io/ecommerce-webapp-project/" target="_blank" class="btn">Live Demo</a>
           <a href="https://github.com/DataOpsInnovator/ecommerce-webapp-project" target="_blank" class="btn">GitHub Repo</a>
         </div>
       </div>
     </div>
+
     <div class="project-card" data-category="devops">
+      <div class="badge">DevOps</div>
       <img src="images/terraform-jenkins.png" class="project-image">
       <div class="project-content">
         <h3>Terraform + Jenkins</h3>
-        <p>Automated AWS infrastructure with Terraform and CI/CD using Jenkins.</p>
+        <p>Automated AWS infrastructure deployment with CI/CD pipelines.</p>
+        <ul>
+          <li>Reduced deployment time by 50% using Terraform and Jenkins automation.</li>
+          <li>Implemented infrastructure validation and monitoring.</li>
+        </ul>
         <div class="project-links">
           <a href="https://github.com/DataOpsInnovator/terraform-jenkins-project" target="_blank" class="btn">GitHub Repo</a>
         </div>
       </div>
     </div>
+
     <div class="project-card" data-category="web">
+      <div class="badge">Web</div>
       <img src="images/python-mysql-db.png" class="project-image">
       <div class="project-content">
         <h3>Python + MySQL App</h3>
-        <p>Python app with secure MySQL integration and CRUD operations.</p>
+        <p>Python application with secure MySQL integration and CRUD operations.</p>
+        <ul>
+          <li>Automated database operations and data validation.</li>
+          <li>Implemented secure user authentication.</li>
+        </ul>
         <div class="project-links">
           <a href="https://github.com/DataOpsInnovator/python-mysql-db-project" target="_blank" class="btn">GitHub Repo</a>
         </div>
       </div>
     </div>
+
     <div class="project-card" data-category="devops">
+      <div class="badge">DevOps</div>
       <img src="images/devops-project.png" class="project-image">
       <div class="project-content">
         <h3>DevOps CI/CD Pipeline</h3>
-        <p>Complete CI/CD pipeline with Jenkins, Docker, and Kubernetes automation.</p>
+        <p>End-to-end CI/CD pipeline automation with Jenkins, Docker, and Kubernetes.</p>
+        <ul>
+          <li>Automated testing, building, and deployment across multiple environments.</li>
+          <li>Reduced release errors by 70% through automated validation.</li>
+        </ul>
         <div class="project-links">
           <a href="https://github.com/DataOpsInnovator/devops-project" target="_blank" class="btn">GitHub Repo</a>
         </div>
       </div>
     </div>
+
     <div class="project-card" data-category="cloud">
+      <div class="badge">Cloud</div>
       <img src="images/cloud-migration.png" class="project-image">
       <div class="project-content">
         <h3>Cloud Migration & Disaster Recovery</h3>
-        <p>Led cloud migration and DR implementation with AWS & Azure, Terraform, and Ansible.</p>
+        <p>Migration from on-premises to AWS & Azure with disaster recovery implementation.</p>
+        <ul>
+          <li>Achieved 99.9% uptime and reduced costs by 25% post-migration.</li>
+          <li>Automated provisioning using Terraform and Ansible.</li>
+        </ul>
         <div class="project-links">
           <a href="https://github.com/DataOpsInnovator/cloud-migration-disaster-recovery" target="_blank" class="btn">GitHub Repo</a>
         </div>
       </div>
     </div>
+
     <div class="project-card" data-category="ai">
+      <div class="badge">AI/ML</div>
       <img src="images/claimwise-ai-logo.png" class="project-image">
       <div class="project-content">
         <h3>ClaimWise AI</h3>
-        <p>AI claims processing system using ML for fraud detection and automation.</p>
+        <p>AI-powered claims processing system for fraud detection and automation.</p>
+        <ul>
+          <li>Implemented ML algorithms achieving 92% fraud detection accuracy.</li>
+          <li>Reduced manual processing time by 50% with automation.</li>
+        </ul>
         <div class="project-links">
           <a href="https://github.com/DataOpsInnovator/claimwise-ai" target="_blank" class="btn">GitHub Repo</a>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- Experience -->
 <section id="experience">
   <h2>Experience</h2>
   <ul>
-    <li><strong>Senior DevOps Engineer</strong> – Shiro Technologies LLC, Addison, TX | Oct 2022 - Present
-      <p>Led cloud infrastructure management and application operations. Automated provisioning using Terraform & CloudFormation, improved CI/CD, and collaborated with security teams for compliance.</p>
+    <li>
+      <strong>Senior DevOps Engineer</strong> – Shiro Technologies LLC, Addison, TX | Oct 2022 - Present
+      <ul>
+        <li>Designed and managed AWS infrastructure, ensuring 99.9% uptime.</li>
+        <li>Automated provisioning with Terraform & CloudFormation, reducing deployment time by 50%.</li>
+        <li>Built and maintained CI/CD pipelines with Jenkins and GitHub Actions, increasing deployment frequency by 60%.</li>
+        <li>Implemented IAM policies and DevSecOps best practices for SOC II readiness.</li>
+      </ul>
     </li>
-    <li><strong>Cloud Engineer</strong> – CDI Tech, Arlington, VA | Jun 2020 – Sep 2022
-      <p>Managed AWS & Azure infrastructure, automated provisioning, implemented disaster recovery, and built CI/CD pipelines with Jenkins.</p>
+    <li>
+      <strong>Cloud Engineer</strong> – CDI Tech, Arlington, VA | Jun 2020 – Sep 2022
+      <ul>
+        <li>Managed AWS & Azure environments for scalable applications.</li>
+        <li>Implemented disaster recovery solutions, reducing downtime by 40%.</li>
+        <li>Automated infrastructure provisioning with Terraform and Ansible.</li>
+        <li>Built CI/CD pipelines with Jenkins, improving release efficiency.</li>
+      </ul>
     </li>
-    <li><strong>Cloud Operations Engineer</strong> – Property Management Experts, Arlington, VA | Jun 2018 – May 2020
-      <p>Provided cloud support, automated maintenance with Ansible, and optimized monitoring with ELK Stack.</p>
+    <li>
+      <strong>Cloud Operations Engineer</strong> – Property Management Experts, Arlington, VA | Jun 2018 – May 2020
+      <ul>
+        <li>Provided cloud support and maintenance for AWS applications.</li>
+        <li>Automated tasks with Ansible and scripts, reducing manual workload by 35%.</li>
+        <li>Optimized monitoring with ELK Stack and CloudWatch.</li>
+        <li>Deployed containerized applications with Docker and Kubernetes.</li>
+      </ul>
     </li>
   </ul>
 </section>
 
-<!-- Certifications -->
 <section id="certifications">
   <h2>Certifications</h2>
   <ul>
@@ -225,75 +265,58 @@
   </ul>
 </section>
 
-<!-- Education -->
 <section id="education">
   <h2>Education</h2>
   <ul>
-    <li>B.Sc. in Computer Science – University of Maryland</li>
+    <li>Bachelor of Science in Computer Science – University of Maryland</li>
     <li>Postgraduate Diploma in Cloud Computing – University of Texas, Austin</li>
-    <li>Master's in Electronics Engineering – Czech Technical University</li>
+    <li>Master's Degree in Electronics Engineering – Czech Technical University</li>
   </ul>
 </section>
 
-<!-- Resume -->
 <section id="resume">
   <h2>Download My Resume</h2>
   <a href="Resume.pdf" class="btn" download>Download Resume (PDF)</a>
 </section>
 
-<!-- Contact -->
 <section id="contact">
   <h2>Contact Me</h2>
   <p>Email: <a href="mailto:John-Dave@gmail.com">John-Dave@gmail.com</a></p>
   <p>Phone: <a href="tel:+12024177593">+1-202-417-7593</a></p>
-  <p>GitHub: <a href="https://github.com/DataOpsInnovator" target="_blank">https://github.com/DataOpsInnovator</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/john-dave" target="_blank">https://www.linkedin.com/in/john-dave</a></p>
+  <p>GitHub: <a href="https://github.com/DataOpsInnovator" target="_blank">DataOpsInnovator</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/john-dave" target="_blank">John Dave</a></p>
 </section>
 
-<!-- Footer -->
 <footer>
   <p>&copy; 2024 John Dave | Cloud & DevOps Engineer</p>
 </footer>
 
-<!-- Back to Top -->
 <div id="backToTop">&#8679;</div>
 
-<!-- JS -->
 <script>
-  // Hero fade-in animations
-  const heroElements = [document.querySelector('.hero-img'), document.querySelector('.hero-title'), document.querySelector('.hero-subtitle'), document.querySelector('.hero-btn')];
-  window.addEventListener('load', () => { heroElements.forEach((el,i)=>setTimeout(()=>{el.style.opacity=1; el.style.transform='translateY(0)';}, 200+i*300)); });
+const sections=document.querySelectorAll('section');
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});},{threshold:0.2});
+sections.forEach(section=>observer.observe(section));
 
-  // Section scroll animation
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.2 });
-  sections.forEach(section => observer.observe(section));
+const backToTop=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{backToTop.style.display=window.scrollY>500?'block':'none';});
+backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-  // Back to top button
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY>500?'block':'none'; });
-  backToTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
-
-  // Project filtering
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      projectCards.forEach(card => { card.style.display = (filter==='all'||card.dataset.category===filter)?'block':'none'; });
-    });
+const filterBtns=document.querySelectorAll('.filter-btn');
+const projectCards=document.querySelectorAll('.project-card');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    projectCards.forEach(card=>card.style.display=(filter==='all'||card.dataset.category===filter)?'block':'none');
   });
+});
 
-  // Project search
-  document.getElementById('projectSearch').addEventListener('input', function() {
-    const search = this.value.toLowerCase();
-    projectCards.forEach(card => { 
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      card.style.display = title.includes(search)?'block':'none';
-    });
-  });
+document.getElementById('projectSearch').addEventListener('input',function(){
+  const search=this.value.toLowerCase();
+  projectCards.forEach(card=>{card.style.display=card.querySelector('h3').textContent.toLowerCase().includes(search)?'block':'none';});
+});
 </script>
 
 </body>
