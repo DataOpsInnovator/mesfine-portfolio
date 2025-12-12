@@ -1,1 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mesfin Getachew - DevOps & Cloud Engineer</title>
+  <meta name="description" content="DevOps & Cloud Engineer Portfolio showcasing skills, projects, certifications, and experience in AWS, Azure, GCP, Terraform, Kubernetes, CI/CD, and DevSecOps.">
+
+  <style>
+    /* Reset & Typography */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; scroll-behavior: smooth; background: #f4f4f4; color: #333; font-size: 18px; }
+    h2 { color: #2980b9; font-size: 2em; margin-bottom: 15px; }
+    h3 { font-size: 1.3em; margin-bottom: 10px; }
+    p { margin-bottom: 10px; }
+    a { text-decoration: none; }
+
+    /* Header / Navigation */
+    header { background-color: #2c3e50; color: white; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
+    header nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+    header nav a { color: #ecf0f1; font-weight: bold; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+    header nav a:hover { background-color: #1abc9c; color: #fff; }
+
+    /* Hero Section */
+    #hero { 
+      color: white; 
+      text-align: center; 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 60px 20px 0 20px;  /* Added spacing below header */
+      position: relative; 
+      z-index: 1; 
+      background: linear-gradient(135deg, #2980b9, #2c3e50, #16a085, #1abc9c); 
+      background-size: 400% 400%; 
+      animation: gradientShift 15s ease infinite; 
+    }
+    @keyframes gradientShift { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
+
+    #hero img.hero-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid white; object-fit: cover; margin-bottom: 25px; transform: translateY(40px); opacity: 0; transition: all 0.8s ease; }
+    #hero img.hero-img:hover { transform: scale(1.05); }
+    #hero h1.hero-title { font-size: 3em; margin-bottom: 15px; line-height:1.2; transform: translateY(40px); opacity:0; transition: all 0.8s ease; }
+    #hero p.hero-subtitle { font-size: 1.3em; max-width: 700px; margin:0 auto 30px; line-height:1.5; transform: translateY(40px); opacity:0; transition: all 0.8s ease; }
+    #hero .hero-btn { display:inline-block; padding:14px 28px; font-size:1.1em; font-weight:bold; border-radius:6px; color:white; background-color:#1abc9c; transform: translateY(40px); opacity:0; transition: all 0.8s ease; }
+    #hero .hero-btn:hover { background-color:#16a085; transform: scale(1.05); }
+    .scroll-down-arrow { position: absolute; bottom:30px; font-size:2em; color:white; animation:bounce 2s infinite; transition: color 0.3s ease; z-index:2; }
+    .scroll-down-arrow:hover { color:#1abc9c; }
+    @keyframes bounce { 0%,20%,50%,80%,100%{ transform:translateY(0); } 40%{ transform:translateY(-10px); } 60%{ transform:translateY(-5px); } }
+
+    /* Sections */
+    section { 
+      padding: 25px; 
+      background-color: white; 
+      margin: 30px auto;      /* Increased vertical spacing between sections */
+      border-radius: 5px; 
+      box-shadow:0 2px 10px rgba(0,0,0,0.1); 
+      max-width:1200px; 
+      opacity:0; 
+      transform: translateY(40px); 
+      transition: all 0.8s ease; 
+    }
+    section.visible { 
+      opacity:1; 
+      transform:translateY(0); 
+    }
+    ul, li { list-style-type:none; padding:0; margin:5px 0; }
+
+    /* About Me & Experience List Styling */
+    #about ul, #experience ul ul { 
+      list-style-type: circle; 
+      margin-left: 20px; 
+      margin-top: 10px; 
+    }
+
+    /* Buttons */
+    .btn { display:inline-block; padding:12px 24px; margin:15px 0; color:white; background-color:#1abc9c; border-radius:5px; font-weight:bold; font-size:1.05em; transition: transform 0.3s ease, background 0.3s ease; }
+    .btn:hover { background-color:#16a085; transform: scale(1.05); }
+
+    /* Projects Section */
+    .projects-controls { margin-bottom: 20px; display:flex; flex-wrap:wrap; gap:10px; justify-content: space-between; }
+    .projects-controls input { padding:6px 10px; border-radius:4px; border:1px solid #ccc; flex-grow:1; min-width:200px; }
+    .filter-buttons button { padding:6px 12px; border:none; border-radius:4px; cursor:pointer; background-color:#2980b9; color:#fff; transition:0.3s; }
+    .filter-buttons .active { background-color:#1abc9c; }
+    .projects-container { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+    .project-card { background-color:white; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .project-card:hover { transform: translateY(-8px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+    .project-image { width:100%; height:200px; object-fit:cover; border-bottom:1px solid #ddd; }
+    .project-content { padding:15px; }
+    .project-content h3 { margin:10px 0; color:#2980b9; }
+    .project-links .btn { padding:8px 16px; font-size:0.95em; margin-right:5px; margin-bottom:5px; }
+
+    /* Skills */
+    #skills ul li span { font-weight:bold; }
+
+    /* Back to Top */
+    #backToTop { position:fixed; bottom:30px; right:30px; background-color:#2980b9; color:white; padding:12px 16px; border-radius:50%; cursor:pointer; font-size:1.4em; display:none; z-index:999; }
+    #backToTop:hover { background-color:#1abc9c; }
+
+    /* Footer */
+    footer { 
+      background-color:#0b1d33; 
+      color:white; 
+      text-align:center; 
+      padding:50px 0;        /* Extra spacing for footer */
+    }
+
+    /* Responsive */
+    @media (max-width:1024px){#hero h1.hero-title{font-size:2.5em;} #hero p.hero-subtitle{font-size:1.15em;} #hero img.hero-img{width:130px;height:130px;} }
+    @media (max-width:768px){#hero h1.hero-title{font-size:2em;} #hero p.hero-subtitle{font-size:1em;} #hero img.hero-img{width:120px;height:120px;} }
+    @media (max-width:480px){#hero h1.hero-title{font-size:1.7em;} #hero p.hero-subtitle{font-size:0.95em;} #hero img.hero-img{width:100px;height:100px;} #hero .hero-btn{padding:12px 24px;font-size:1em;} }
+  </style>
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills & Tools</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience"> Professional Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#education">Education</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="hero">
+  <img src="images/profile.jpg" alt="Mesfin Getachew" class="hero-img">
+  <h1 class="hero-title">Mesfin Getachew</h1>
+  <p class="hero-subtitle">Senior DevOps & Cloud Engineer | AWS, Azure, GCP | CI/CD, Terraform, Kubernetes | Automating Scalable & Secure Infrastructure</p>
+  <a href="#contact" class="btn hero-btn">Get in Touch</a>
+  <a href="#about" class="scroll-down-arrow">&#x2193;</a>
+</section>
+
+<!-- About Me -->
+<section id="about">
+  <h2>About Me</h2>
+  <p> Senior DevOps & Cloud Engineer with 7+ years of experience designing, deploying, and managing scalable, secure cloud infrastructure. I specialize in automated, cost-efficient, and resilient environments that accelerate business value.</p>
+  
+  <ul>
+    <li><strong>Cloud Infrastructure:</strong> Designed and managed multi-cloud environments for high availability and performance.</li>
+    <li><strong>Automation & CI/CD:</strong> Implemented Infrastructure as Code with Terraform, CloudFormation, CDK; reduced deployment time by 50%.</li>
+    <li><strong>Containers & Orchestration:</strong> Deployed Kubernetes clusters (EKS, ECS, AKS) and Dockerized applications for scalable microservices.</li>
+    <li><strong>Monitoring & Security:</strong> Built centralized logging, enforced IAM/DevSecOps best practices for SOC II readiness.</li>
+    <li><strong>Collaboration:</strong> Worked cross-functionally to deliver reliable, maintainable infrastructure solutions.</li>
+  </ul>
+</section>
+
+<!-- Skills & Tools -->
+<section id="skills">
+  <h2>Skills & Tools</h2>
+  <ul>
+    <li><span>Cloud Platforms:</span> AWS (EC2, Lambda, S3, RDS, DynamoDB, VPC, ECS, EKS, CloudFormation, CDK, CloudWatch, Route53, IAM, KMS, Shield, WAF), Azure (VMs, Networking, App Services, Azure DevOps, Active Directory, RBAC), GCP (Foundational Knowledge)</li>
+    <li><span>DevOps & Automation:</span> Terraform, Ansible, CloudFormation, AWS CDK, Jenkins, GitHub Actions, GitLab CI, Azure DevOps, GitOps</li>
+    <li><span>Containers & Orchestration:</span> Docker, Kubernetes (EKS, ECS, AKS), Helm</li>
+    <li><span>Monitoring & Observability:</span> Prometheus, Grafana, Datadog, Dynatrace, CloudWatch, CloudTrail, Centralized Logging & Alerting</li>
+    <li><span>Security & Governance:</span> IAM, RBAC, HashiCorp Vault, KMS, DevSecOps, compliance (SOC II readiness)</li>
+    <li><span>Programming & Scripting:</span> Python, Bash, PowerShell, Java, YAML</li>
+    <li><span>Databases:</span> MySQL, DynamoDB, MongoDB, PostgreSQL</li>
+    <li><span>Collaboration:</span> Jira, Confluence, Slack, Microsoft Teams, Agile/Scrum</li>
+  </ul>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects-controls">
+    <input type="text" id="projectSearch" placeholder="Search projects...">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web Apps</button>
+      <button class="filter-btn" data-filter="devops">DevOps</button>
+      <button class="filter-btn" data-filter="cloud">Cloud</button>
+      <button class="filter-btn" data-filter="ai">AI/ML</button>
+    </div>
+  </div>
+  <div class="projects-container">
+    <!-- Project Cards Here (unchanged) -->
+    <div class="project-card" data-category="web">
+      <img src="images/shop-smartly-logo.png" class="project-image">
+      <div class="project-content">
+        <h3>Ecommerce-Webapp</h3>
+        <p>Fully functional e-commerce platform with payment integration and inventory management.</p>
+        <div class="project-links">
+          <a href="https://dataopsinnovator.github.io/ecommerce-webapp/" target="_blank" class="btn">Live Demo</a>
+          <a href="https://github.com/DataOpsInnovator/ecommerce-webapp" target="_blank" class="btn">GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="devops">
+      <img src="images/terraform-jenkins.png" class="project-image">
+      <div class="project-content">
+        <h3>Terraform + Jenkins</h3>
+        <p>Automated AWS infrastructure with Terraform and CI/CD using Jenkins.</p>
+        <div class="project-links">
+          <a href="https://github.com/DataOpsInnovator/terraform-jenkins-project" target="_blank" class="btn">GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="web">
+      <img src="images/python-mysql-db.png" class="project-image">
+      <div class="project-content">
+        <h3>Python + MySQL App</h3>
+        <p>Python app with secure MySQL integration and CRUD operations.</p>
+        <div class="project-links">
+          <a href="https://github.com/DataOpsInnovator/python-mysql-db-project" target="_blank" class="btn">GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="devops">
+      <img src="images/devops-project.png" class="project-image">
+      <div class="project-content">
+        <h3>DevOps CI/CD Pipeline</h3>
+        <p>Complete CI/CD pipeline with Jenkins, Docker, and Kubernetes automation.</p>
+        <div class="project-links">
+          <a href="https://github.com/DataOpsInnovator/devops-project" target="_blank" class="btn">GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="cloud">
+      <img src="images/cloud-migration.png" class="project-image">
+      <div class="project-content">
+        <h3>Cloud Migration & Disaster Recovery</h3>
+        <p>Led cloud migration and DR implementation with AWS & Azure, Terraform, and Ansible.</p>
+        <div class="project-links">
+          <a href="https://github.com/DataOpsInnovator/cloud-migration-disaster-recovery" target="_blank" class="btn">GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="ai">
+      <img src="images/claimwise-ai-logo.png" class="project-image">
+      <div class="project-content">
+        <h3>ClaimWise AI</h3>
+        <p>AI claims processing system using ML for fraud detection and automation.</p>
+        <div class="project-links">
+          <a href="https://github.com/DataOpsInnovator/claimwise-ai" target="_blank" class="btn">GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Professional Experience -->
+<section id="experience">
+  <h2>Experience</h2>
+  <ul>
+    <li>
+      <strong>Senior DevOps Engineer</strong> – Shiro Technologies LLC, Addison, TX | Oct 2022 - Present
+      <ul>
+        <li>Led cloud infrastructure management and application operations.</li>
+        <li>Automated provisioning using Terraform & CloudFormation.</li>
+        <li>Improved CI/CD pipelines and deployment efficiency.</li>
+        <li>Collaborated with security teams for compliance audits.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Cloud Engineer</strong> – CDI Tech, Arlington, VA | Jun 2020 – Sep 2022
+      <ul>
+        <li>Managed AWS & Azure infrastructure and automated provisioning.</li>
+        <li>Implemented disaster recovery solutions.</li>
+        <li>Built and maintained CI/CD pipelines with Jenkins.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Cloud Operations Engineer</strong> – Property Management Experts, Arlington, VA | Jun 2018 – May 2020
+      <ul>
+        <li>Provided cloud support and maintenance.</li>
+        <li>Automated routine tasks with Ansible.</li>
+        <li>Optimized monitoring using ELK Stack.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<!-- Certifications -->
+<section id="certifications">
+  <h2>Certifications</h2>
+  <ul>
+    <li>AWS Certified DevOps Engineer – Professional</li>
+    <li>Microsoft Certified Azure Database Administrator – Associate</li>
+    <li>Python for Machine Learning – Great Learning Academy</li>
+    <li>AI & Career Empowerment – University of Maryland</li>
+  </ul>
+</section>
+
+<!-- Education -->
+<section id="education">
+  <h2>Education</h2>
+  <ul>
+    <li>B.Sc. in Computer Science – University of Maryland</li>
+    <li>Postgraduate Diploma in Cloud Computing – University of Texas, Austin</li>
+  </ul>
+</section>
+
+<!-- Resume -->
+<section id="resume">
+  <h2>Download My Resume</h2>
+  <a href="Resume.pdf" class="btn" download>Download Resume (PDF)</a>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p>Email: <a href="mailto:mesfin.g.tech@gmail.com">mesfin.g.tech@gmail.com</a></p>
+  <p>Phone: <a href="tel:+1‪-202-596-5194‬">+1-‪202-596-5194‬</a></p>
+  <p>GitHub: <a href="https://github.com/DataOpsInnovator" target="_blank">https://github.com/DataOpsInnovator</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/mesfin-g-tech" target="_blank">https://www.linkedin.com/in/mesfin-g-tech</a></p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2018 Mesfin Getachew | Cloud & DevOps Engineer</p>
+</footer>
+
+<!-- Back to Top -->
+<div id="backToTop">&#8679;</div>
+
+<!-- JS -->
+<script>
+  // Hero fade-in animations
+  const heroElements = [document.querySelector('.hero-img'), document.querySelector('.hero-title'), document.querySelector('.hero-subtitle'), document.querySelector('.hero-btn')];
+  window.addEventListener('load', () => { heroElements.forEach((el,i)=>setTimeout(()=>{el.style.opacity=1; el.style.transform='translateY(0)';}, 200+i*300)); });
+
+  // Section scroll animation
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.2 });
+  sections.forEach(section => observer.observe(section));
+
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY>500?'block':'none'; });
+  backToTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+  // Project filtering
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projectCards.forEach(card => { card.style.display = (filter==='all'||card.dataset.category===filter)?'block':'none'; });
+    });
+  });
+
+  // Project search
+  document.getElementById('projectSearch').addEventListener('input', function() {
+    const search = this.value.toLowerCase();
+    projectCards.forEach(card => { 
+      const title = card.querySelector('h3').textContent.toLowerCase();
+      card.style.display = title.includes(search)?'block':'none';
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
 
