@@ -13,7 +13,7 @@ A static, GitHub Pages-ready portfolio presenting cloud platforms, Infrastructur
 7. Résumé path: `assets/resume/Mesfin-Getachew-Resume.pdf`
 8. GitHub, LinkedIn and email CTAs (verify the links)
 9. Mobile navigation and SEO/OpenGraph metadata
-10. GitHub Pages deployment workflow
+10. GitHub Pages deployment workflow (supports the repository default branch and main)
 11. Original-image restoration and verification scripts
 
 ## Structure
@@ -68,6 +68,15 @@ bash scripts/verify-portfolio.sh
 4. Confirm the workflow succeeds.
 
 Expected URL: `https://dataopsinnovator.github.io/mesfine-portfolio/`
+
+## Engineering quality standards
+
+- Keep project descriptions evidence-based. Separate implemented features from planned or conceptual capabilities.
+- For each flagship case study, document the problem, architecture, design trade-offs, validation, security boundaries, observability, recovery approach, cost considerations, and limitations.
+- Publish metrics only when reproducible and approved for disclosure; never fabricate cost savings, SLOs, availability, compliance, or performance claims.
+- Preserve keyboard access, visible focus, descriptive link text, reduced-motion support, and mobile navigation behavior.
+- Include rel="noopener noreferrer" on external links opened in a new tab.
+- Confirm the actual repository default branch and GitHub Pages configuration before publishing.
 
 ## Publishing checklist
 
