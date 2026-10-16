@@ -14,3 +14,10 @@
 - [ ] Run `bash scripts/verify-portfolio.sh`.
 - [ ] Enable GitHub Actions for GitHub Pages and verify deployment.
 - [ ] Never publish fabricated metrics or unverified credentials.
+
+- [ ] Review architecture diagrams and distinguish implemented components from conceptual designs.
+- [ ] Verify security controls, CI validation, tests, observability and recovery claims against repository evidence.
+- [ ] Confirm no metrics, certifications, compliance claims, or production outcomes are unsupported.
+- [ ] Check skip navigation, visible keyboard focus, Escape-to-close mobile menu, and reduced-motion behavior.
+- [ ] Confirm canonical URL, Open Graph metadata, structured data, and external-link rel attributes.
+- [ ] Run the verification script and review GitHub Actions logs after deployment.
