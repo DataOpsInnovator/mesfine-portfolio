@@ -12,3 +12,18 @@
 @media(max-width:620px){.principles{grid-template-columns:1fr}}
 .work[hidden]{display:none!important}
 @media(max-width:760px){.nav-wrap{position:relative}.nav-wrap .menu{display:inline-flex}.nav-wrap nav{display:none;position:absolute;top:100%;left:0;right:0;z-index:50;padding:18px;background:#0c1119;border:1px solid #202b3a;flex-direction:column;gap:16px}.nav-wrap nav.open{display:flex}}
+
+/* Accessibility and portfolio refresh */
+.skip-link{position:absolute;left:16px;top:-100px;z-index:1000;padding:10px 14px;background:#70e3f2;color:#071015;border-radius:8px;font-weight:800}
+.skip-link:focus{top:12px}
+:focus-visible{outline:3px solid #70e3f2;outline-offset:4px}
+.evidence{background:#070a0f}
+.evidence-intro{max-width:780px;font-size:1.05rem}
+.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.evidence-grid article{padding:25px;border:1px solid #202b3a;border-radius:14px;background:#0c1119}
+.evidence-grid article span{color:#70e3f2;font-size:.7rem;font-weight:900;letter-spacing:.12em}
+.evidence-grid h3{margin:14px 0 8px}
+.evidence-grid p,.evidence-note{color:#98a6b8;font-size:.9rem}
+.evidence-note{margin-top:20px;font-size:.8rem}
+@media(max-width:760px){.evidence-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
