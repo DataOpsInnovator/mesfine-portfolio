@@ -22,6 +22,38 @@
 <div class="careflow-actions"><a class="btn primary" href="https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform" target="_blank" rel="noopener noreferrer">View GitHub repository ↗</a><a class="btn" href="../index.html#work">Back to all projects</a></div>
 <div class="careflow-logo-panel" style="margin-top:34px"><img src="../assets/images/careflow-logo.png" alt="CareFlow logo: Better Health. Connected Globally."></div>
 </div></section>
+
+<section class="section"><div class="shell">
+<p class="eyebrow">ARCHITECTURE / 01</p><h2>Reference architecture</h2>
+<p class="lead">This diagram summarizes the repository's documented target design: secure CI, image publication, GitOps delivery, regional Kubernetes workloads, managed data services, and operational recovery.</p>
+<figure style="margin:28px 0"><img src="../assets/diagrams/careflow-reference-architecture.svg" alt="CareFlow reference architecture: GitHub and CI security gates publish images to ECR, Argo CD syncs workloads to primary and secondary AWS regions, and data and observability services support recovery." style="display:block;width:100%;height:auto;border:1px solid #202b3a;border-radius:16px;background:#080d15"><figcaption style="margin-top:12px;color:#98a6b8;font-size:.9rem">Reference design, not proof of a live deployment. Regional topology and service choices should be validated against the repository's current Terraform, Kubernetes and operational configuration.</figcaption></figure>
+<div class="careflow-layout">
+<article class="careflow-panel"><p class="eyebrow">DESIGN INTENT</p><h2>Key decisions to review</h2><ul>
+<li><strong>Identity:</strong> GitHub Actions uses OIDC and short-lived AWS credentials instead of long-lived access keys.</li>
+<li><strong>Delivery:</strong> CI validation and security checks precede artifact publication; Argo CD reconciles declared workload state.</li>
+<li><strong>Workload isolation:</strong> private EKS workloads, Kubernetes policy controls and network policies define workload boundaries.</li>
+<li><strong>Resilience:</strong> primary region plus warm standby, with recovery mechanisms selected around authoritative data and RPO requirements.</li>
+<li><strong>Operations:</strong> telemetry, SLO-oriented alerting, restore procedures and explicit failover/failback readiness gates.</li>
+</ul></article>
+<article class="careflow-panel"><p class="eyebrow">TRUST BOUNDARIES</p><h2>Security and failure domains</h2><ul>
+<li>Internet and edge controls are untrusted ingress boundaries.</li><li>Application workloads run in private Kubernetes namespaces.</li><li>Data services are isolated and use encryption key controls.</li><li>Administrative actions require short-lived identities and explicit approvals.</li><li>Failure analysis considers availability zones, clusters, applications, databases, eventing, regions and CI/CD.</li>
+</ul><a href="https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform/blob/main/docs/architecture/overview.md" target="_blank" rel="noopener noreferrer">Read architecture overview ↗</a></article>
+</div>
+</div></section>
+<section class="section dark"><div class="shell">
+<p class="eyebrow">REPRODUCIBILITY / 02</p><h2>Validate the repository locally</h2>
+<p class="lead">CareFlow includes a Makefile-driven validation path. Run these checks from a clean clone with the documented prerequisites installed; review the actual command output and CI run rather than treating the presence of a workflow as a passing result.</p>
+<div class="careflow-panel" style="margin-top:26px"><h2>1. Clone and inspect</h2><pre style="white-space:pre-wrap;overflow:auto;color:#cbd5e1">git clone https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform.git
+cd CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform
+git status --short
+make help  # if provided by the current checkout</pre><h2 style="margin-top:26px">2. Run tests and validation</h2><pre style="white-space:pre-wrap;overflow:auto;color:#cbd5e1">make unit
+make test
+make validate</pre><p>According to the repository's validation notes, the packaging checks recorded seven passing repository contract/security/DR/unit tests. Terraform initialization/validation, Helm lint, live AWS deployment, IAM/OIDC verification, EKS bootstrap, Argo CD sync, load testing, restore, and regional failover were not executable in that packaging environment and remain separate deployment gates.</p><p><strong>Expected evidence to capture:</strong> commit SHA, tool versions, command and exit code, CI run URL, test summary, Terraform plan (redacted), scanner output, and any skipped checks with reasons.</p></div>
+<div class="careflow-layout" style="margin-top:24px">
+<article class="careflow-panel"><h2>Validation sources</h2><ul><li><a href="https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform/blob/main/VALIDATION.md" target="_blank" rel="noopener noreferrer">Validation status and limitations</a></li><li><a href="https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform/blob/main/Makefile" target="_blank" rel="noopener noreferrer">Makefile targets</a></li><li><a href="https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform/tree/main/.github/workflows" target="_blank" rel="noopener noreferrer">CI and security workflows</a></li><li><a href="https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform/tree/main/tests" target="_blank" rel="noopener noreferrer">Test suites</a></li></ul></article>
+<article class="careflow-panel"><h2>Evidence boundary</h2><p>This is a portfolio project using synthetic data. It is not a claim of HIPAA or HITRUST certification, nor proof that a live multi-region environment has been deployed or exercised. Do not publish credentials, patient data, unredacted plans, account IDs, or security-sensitive logs.</p></article>
+</div>
+</div></section>
 <section class="section dark"><div class="shell careflow-layout">
 <article class="careflow-panel"><p class="eyebrow">PROJECT OVERVIEW</p><h2>Better Health. Connected Globally.</h2><p>CareFlow is presented in this portfolio as an enterprise healthcare cloud platform project. The repository is the source of truth for implementation details, architecture decisions, deployment instructions, and technologies used.</p><p class="careflow-callout">The portfolio intentionally avoids claiming specific availability, compliance, security certifications, or performance results unless those are documented in the project repository.</p></article>
 <aside class="careflow-panel"><p class="eyebrow">PROJECT LINKS</p><h2>Explore the work</h2><ul><li>Review the source code and documentation.</li><li>Check the repository for architecture diagrams and deployment steps.</li><li>Use the README to verify the exact technology stack and implemented features.</li></ul><a class="btn primary" href="https://github.com/DataOpsInnovator/CareFlow-Enterprise-Multi-Region-Healthcare-Cloud-Platform" target="_blank" rel="noopener noreferrer">Open repository ↗</a></aside>
