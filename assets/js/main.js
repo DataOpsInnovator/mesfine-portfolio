@@ -37,7 +37,7 @@
         item.setAttribute('aria-pressed', String(active));
       });
       document.querySelectorAll('.work').forEach(card => {
-        const tags = (card.dataset.tags || '').split(/\\s+/);
+        const tags = (card.dataset.tags || '').split(/\s+/);
         card.hidden = filter !== 'all' && !tags.includes(filter);
       });
     });
