@@ -1,14 +1,212 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
-<title id="title">AI infrastructure review workflow</title><desc id="desc">A proposed safe workflow from read-only source intake through parsing and deterministic checks, optional AI-assisted explanation, structured findings and human approval. The diagram is conceptual and not a claim that all stages are implemented.</desc>
-<defs><style>.bg{fill:#080d15}.panel{fill:#101a27;stroke:#34475e;stroke-width:2}.accent{fill:#102c35;stroke:#29c8bf;stroke-width:2}.warm{fill:#302417;stroke:#e8b65b;stroke-width:2}.txt{font:600 20px system-ui,sans-serif;fill:#edf4fb}.sub{font:15px system-ui,sans-serif;fill:#a9b8ca}.label{font:700 14px system-ui,sans-serif;letter-spacing:2px;fill:#69ded7}.line{stroke:#6e8ba8;stroke-width:2.5;fill:none}</style><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6e8ba8"/></marker></defs>
-<rect class="bg" width="1200" height="700" rx="24"/><text x="48" y="54" class="label">AI-INFRA-AGENT / REVIEW WORKFLOW</text><text x="48" y="83" class="sub">Conceptual architecture — implementation status must be verified against source code and tests.</text>
-<rect class="panel" x="45" y="145" width="240" height="112" rx="14"/><text x="165" y="184" text-anchor="middle" class="txt">Source intake</text><text x="165" y="213" text-anchor="middle" class="sub">Terraform · config · metadata</text><text x="165" y="235" text-anchor="middle" class="sub">Read-only, scoped inputs</text>
-<rect class="accent" x="345" y="145" width="245" height="112" rx="14"/><text x="467" y="184" text-anchor="middle" class="txt">Parse + validate</text><text x="467" y="213" text-anchor="middle" class="sub">Schema · syntax · policy</text><text x="467" y="235" text-anchor="middle" class="sub">Deterministic checks first</text>
-<rect class="panel" x="650" y="145" width="245" height="112" rx="14"/><text x="772" y="184" text-anchor="middle" class="txt">Analysis layer</text><text x="772" y="213" text-anchor="middle" class="sub">Security · cost · reliability</text><text x="772" y="235" text-anchor="middle" class="sub">AI explanation, if enabled</text>
-<rect class="warm" x="955" y="145" width="200" height="112" rx="14"/><text x="1055" y="184" text-anchor="middle" class="txt">Findings</text><text x="1055" y="213" text-anchor="middle" class="sub">Evidence · severity</text><text x="1055" y="235" text-anchor="middle" class="sub">Recommendation</text>
-<path class="line" marker-end="url(#arrow)" d="M285 201 H340"/><path class="line" marker-end="url(#arrow)" d="M590 201 H645"/><path class="line" marker-end="url(#arrow)" d="M895 201 H950"/>
-<rect class="panel" x="160" y="365" width="350" height="125" rx="14"/><text x="335" y="407" text-anchor="middle" class="txt">Guardrails + audit trail</text><text x="335" y="436" text-anchor="middle" class="sub">No cloud mutations by default</text><text x="335" y="458" text-anchor="middle" class="sub">Redact secrets · record tool versions</text>
-<rect class="accent" x="650" y="365" width="390" height="125" rx="14"/><text x="845" y="407" text-anchor="middle" class="txt">Human review + CI evidence</text><text x="845" y="436" text-anchor="middle" class="sub">Review findings and proposed changes</text><text x="845" y="458" text-anchor="middle" class="sub">Test · approve · archive results</text>
-<path class="line" marker-end="url(#arrow)" d="M1055 257 V315 H845 V360"/><path class="line" marker-end="url(#arrow)" d="M772 257 V300 H335 V360"/><path class="line" marker-end="url(#arrow)" d="M510 427 H645"/>
-<rect class="warm" x="315" y="555" width="570" height="88" rx="14"/><text x="600" y="590" text-anchor="middle" class="txt">Reproducible review output</text><text x="600" y="618" text-anchor="middle" class="sub">Input revision · tool versions · findings · reviewer decision</text><path class="line" marker-end="url(#arrow)" d="M845 490 V525 H600 V550"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Segoe UI, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="100%" stop-color="#0f0f20"/>
+    </linearGradient>
+    <linearGradient id="triggerBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="900" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="600" y="45" text-anchor="middle" fill="url(#titleGrad)" font-size="28" font-weight="700">AI Cloud Infrastructure Agent</text>
+  <text x="600" y="70" text-anchor="middle" fill="#64748b" font-size="14">Natural Language → Terraform → Deployed Infrastructure</text>
+  <text x="600" y="88" text-anchor="middle" fill="#475569" font-size="12">Powered by <tspan fill="#22d3ee" font-weight="600">Trigger.dev</tspan> + Vercel AI SDK + Terraform</text>
+
+  <!-- USER BOX -->
+  <rect x="420" y="105" width="360" height="80" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="600" y="135" text-anchor="middle" font-size="22">👤</text>
+  <text x="600" y="155" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">User / Developer</text>
+  <text x="600" y="173" text-anchor="middle" fill="#94a3b8" font-size="11">"Deploy a web server on AWS with EC2 and RDS..."</text>
+
+  <!-- Arrow: User -> Frontend -->
+  <line x1="600" y1="185" x2="600" y2="210" stroke="#475569" stroke-width="2"/>
+  <polygon points="596,208 604,208 600,216" fill="#475569"/>
+  <text x="620" y="203" fill="#64748b" font-size="9" font-weight="500">HTTP POST</text>
+
+  <!-- FRONTEND BOX -->
+  <rect x="250" y="218" width="700" height="95" rx="12" fill="#1a1a2e" stroke="#2d3a5c" stroke-width="1"/>
+  <text x="600" y="242" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">🌐  Next.js Frontend</text>
+  <text x="600" y="258" text-anchor="middle" fill="#94a3b8" font-size="11">Interactive dashboard with real-time streaming UI</text>
+
+  <!-- Frontend features -->
+  <rect x="280" y="268" width="140" height="34" rx="6" fill="rgba(96,165,250,0.08)" stroke="rgba(96,165,250,0.2)" stroke-width="1"/>
+  <text x="350" y="289" text-anchor="middle" fill="#93c5fd" font-size="10">✏️ Prompt Input</text>
+
+  <rect x="435" y="268" width="140" height="34" rx="6" fill="rgba(96,165,250,0.08)" stroke="rgba(96,165,250,0.2)" stroke-width="1"/>
+  <text x="505" y="289" text-anchor="middle" fill="#93c5fd" font-size="10">📄 Live Code Viewer</text>
+
+  <rect x="590" y="268" width="155" height="34" rx="6" fill="rgba(96,165,250,0.08)" stroke="rgba(96,165,250,0.2)" stroke-width="1"/>
+  <text x="668" y="289" text-anchor="middle" fill="#93c5fd" font-size="10">📈 Progress Timeline</text>
+
+  <rect x="760" y="268" width="155" height="34" rx="6" fill="rgba(96,165,250,0.08)" stroke="rgba(96,165,250,0.2)" stroke-width="1"/>
+  <text x="838" y="289" text-anchor="middle" fill="#93c5fd" font-size="10">✅ Approval Panel</text>
+
+  <!-- Streams Bar -->
+  <rect x="300" y="320" width="600" height="28" rx="6" fill="rgba(34,211,238,0.05)" stroke="rgba(34,211,238,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+  <circle cx="330" cy="334" r="4" fill="#22d3ee" opacity="0.7"/>
+  <text x="345" y="338" fill="#67e8f9" font-size="10" font-weight="500">Real-time Streams (useRealtimeStream)</text>
+  <circle cx="560" cy="334" r="4" fill="#22d3ee" opacity="0.5"/>
+  <text x="575" y="338" fill="#67e8f9" font-size="9">progressStream</text>
+  <circle cx="680" cy="334" r="4" fill="#22d3ee" opacity="0.3"/>
+  <text x="695" y="338" fill="#67e8f9" font-size="9">aiOutputStream</text>
+  <circle cx="810" cy="334" r="4" fill="#22d3ee" opacity="0.6"/>
+  <text x="825" y="338" fill="#67e8f9" font-size="9">terraformStream</text>
+
+  <!-- Arrow: Frontend -> Trigger.dev -->
+  <line x1="600" y1="348" x2="600" y2="380" stroke="#475569" stroke-width="2"/>
+  <polygon points="596,378 604,378 600,386" fill="#475569"/>
+  <text x="625" y="370" fill="#64748b" font-size="9" font-weight="500">TRIGGER + STREAM</text>
+
+  <!-- TRIGGER.DEV ORCHESTRATOR -->
+  <rect x="60" y="388" width="1080" height="280" rx="16" fill="#0f172a" stroke="url(#triggerBorder)" stroke-width="2"/>
+
+  <!-- Trigger.dev header -->
+  <rect x="80" y="400" width="100" height="28" rx="6" fill="#7c3aed"/>
+  <text x="130" y="419" text-anchor="middle" fill="white" font-size="12" font-weight="800">Trigger.dev</text>
+  <text x="200" y="419" fill="#c4b5fd" font-size="16" font-weight="600">Agent Orchestrator</text>
+
+  <!-- Feature pills -->
+  <rect x="560" y="403" width="80" height="22" rx="10" fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="600" y="418" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="500">No Timeouts</text>
+  <rect x="650" y="403" width="80" height="22" rx="10" fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="690" y="418" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="500">Auto Retries</text>
+  <rect x="740" y="403" width="65" height="22" rx="10" fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="773" y="418" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="500">Queues</text>
+  <rect x="815" y="403" width="85" height="22" rx="10" fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="858" y="418" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="500">Observability</text>
+  <rect x="910" y="403" width="115" height="22" rx="10" fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <text x="968" y="418" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="500">Human-in-the-Loop</text>
+
+  <!-- Divider line -->
+  <line x1="80" y1="435" x2="1120" y2="435" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
+
+  <!-- STEP 1: Parse -->
+  <rect x="85" y="450" width="185" height="195" rx="10" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <circle cx="178" cy="443" r="13" fill="#0a0a1a" stroke="#3b82f6" stroke-width="2"/>
+  <text x="178" y="448" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="700">1</text>
+  <text x="178" y="490" text-anchor="middle" font-size="24">🧠</text>
+  <text x="178" y="515" text-anchor="middle" fill="#93c5fd" font-size="13" font-weight="600">Parse Request</text>
+  <text x="178" y="535" text-anchor="middle" fill="#94a3b8" font-size="10">LLM extracts structured</text>
+  <text x="178" y="548" text-anchor="middle" fill="#94a3b8" font-size="10">infrastructure spec from</text>
+  <text x="178" y="561" text-anchor="middle" fill="#94a3b8" font-size="10">natural language</text>
+  <text x="178" y="590" text-anchor="middle" fill="#64748b" font-size="9">generateObject()</text>
+  <text x="178" y="603" text-anchor="middle" fill="#64748b" font-size="9">+ Zod Schema</text>
+  <rect x="115" y="612" width="125" height="20" rx="4" fill="rgba(59,130,246,0.12)"/>
+  <text x="178" y="626" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600">schemaTask</text>
+
+  <!-- Arrow 1->2 -->
+  <text x="280" y="545" fill="#475569" font-size="20">→</text>
+
+  <!-- STEP 2: Generate -->
+  <rect x="295" y="450" width="185" height="195" rx="10" fill="rgba(168,85,247,0.08)" stroke="rgba(168,85,247,0.3)" stroke-width="1"/>
+  <circle cx="388" cy="443" r="13" fill="#0a0a1a" stroke="#a855f7" stroke-width="2"/>
+  <text x="388" y="448" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="700">2</text>
+  <text x="388" y="490" text-anchor="middle" font-size="24">💻</text>
+  <text x="388" y="515" text-anchor="middle" fill="#d8b4fe" font-size="13" font-weight="600">Generate Terraform</text>
+  <text x="388" y="535" text-anchor="middle" fill="#94a3b8" font-size="10">AI generates production-</text>
+  <text x="388" y="548" text-anchor="middle" fill="#94a3b8" font-size="10">ready HCL code, streamed</text>
+  <text x="388" y="561" text-anchor="middle" fill="#94a3b8" font-size="10">to frontend in real-time</text>
+  <text x="388" y="590" text-anchor="middle" fill="#64748b" font-size="9">streamText()</text>
+  <text x="388" y="603" text-anchor="middle" fill="#64748b" font-size="9">+ aiOutputStream</text>
+  <rect x="325" y="612" width="125" height="20" rx="4" fill="rgba(168,85,247,0.12)"/>
+  <text x="388" y="626" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="600">Real-time Stream</text>
+
+  <!-- Arrow 2->3 -->
+  <text x="490" y="545" fill="#475569" font-size="20">→</text>
+
+  <!-- STEP 3: Validate -->
+  <rect x="505" y="450" width="185" height="195" rx="10" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+  <circle cx="598" cy="443" r="13" fill="#0a0a1a" stroke="#f59e0b" stroke-width="2"/>
+  <text x="598" y="448" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">3</text>
+  <text x="598" y="490" text-anchor="middle" font-size="24">🔍</text>
+  <text x="598" y="515" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="600">Validate + Cost</text>
+  <text x="598" y="535" text-anchor="middle" fill="#94a3b8" font-size="10">Validates code, auto-fixes</text>
+  <text x="598" y="548" text-anchor="middle" fill="#94a3b8" font-size="10">errors via LLM loop,</text>
+  <text x="598" y="561" text-anchor="middle" fill="#94a3b8" font-size="10">estimates monthly cost</text>
+  <text x="598" y="590" text-anchor="middle" fill="#64748b" font-size="9">Evaluator-Optimizer</text>
+  <text x="598" y="603" text-anchor="middle" fill="#64748b" font-size="9">Pattern</text>
+  <rect x="535" y="612" width="125" height="20" rx="4" fill="rgba(245,158,11,0.12)"/>
+  <text x="598" y="626" text-anchor="middle" fill="#f59e0b" font-size="9" font-weight="600">Auto-fix Loop ↻</text>
+
+  <!-- Arrow 3->4 -->
+  <text x="700" y="545" fill="#475569" font-size="20">→</text>
+
+  <!-- STEP 4: Approve -->
+  <rect x="715" y="450" width="185" height="195" rx="10" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+  <circle cx="808" cy="443" r="13" fill="#0a0a1a" stroke="#22d3ee" stroke-width="2"/>
+  <text x="808" y="448" text-anchor="middle" fill="#22d3ee" font-size="11" font-weight="700">4</text>
+  <text x="808" y="490" text-anchor="middle" font-size="24">✋</text>
+  <text x="808" y="515" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="600">Human Approval</text>
+  <text x="808" y="535" text-anchor="middle" fill="#94a3b8" font-size="10">Task pauses. User reviews</text>
+  <text x="808" y="548" text-anchor="middle" fill="#94a3b8" font-size="10">code + cost estimate,</text>
+  <text x="808" y="561" text-anchor="middle" fill="#94a3b8" font-size="10">then approves or rejects</text>
+  <text x="808" y="590" text-anchor="middle" fill="#64748b" font-size="9">wait.forToken()</text>
+  <text x="808" y="603" text-anchor="middle" fill="#64748b" font-size="9">+ wait.completeToken()</text>
+  <rect x="745" y="612" width="125" height="20" rx="4" fill="rgba(34,211,238,0.12)"/>
+  <text x="808" y="626" text-anchor="middle" fill="#22d3ee" font-size="9" font-weight="600">Waitpoint Token</text>
+
+  <!-- Arrow 4->5 -->
+  <text x="910" y="545" fill="#475569" font-size="20">→</text>
+
+  <!-- STEP 5: Deploy -->
+  <rect x="925" y="450" width="185" height="195" rx="10" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+  <circle cx="1018" cy="443" r="13" fill="#0a0a1a" stroke="#22c55e" stroke-width="2"/>
+  <text x="1018" y="448" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="700">5</text>
+  <text x="1018" y="490" text-anchor="middle" font-size="24">🚀</text>
+  <text x="1018" y="515" text-anchor="middle" fill="#86efac" font-size="13" font-weight="600">Deploy</text>
+  <text x="1018" y="535" text-anchor="middle" fill="#94a3b8" font-size="10">Executes terraform apply</text>
+  <text x="1018" y="548" text-anchor="middle" fill="#94a3b8" font-size="10">and streams output to</text>
+  <text x="1018" y="561" text-anchor="middle" fill="#94a3b8" font-size="10">frontend in real-time</text>
+  <text x="1018" y="590" text-anchor="middle" fill="#64748b" font-size="9">terraform apply</text>
+  <text x="1018" y="603" text-anchor="middle" fill="#64748b" font-size="9">+ terraformStream</text>
+  <rect x="955" y="612" width="125" height="20" rx="4" fill="rgba(34,197,94,0.12)"/>
+  <text x="1018" y="626" text-anchor="middle" fill="#22c55e" font-size="9" font-weight="600">Long-running Task</text>
+
+  <!-- Arrow: Trigger.dev -> Cloud -->
+  <line x1="600" y1="668" x2="600" y2="700" stroke="#475569" stroke-width="2"/>
+  <polygon points="596,698 604,698 600,706" fill="#475569"/>
+  <text x="625" y="690" fill="#64748b" font-size="9" font-weight="500">TERRAFORM APPLY</text>
+
+  <!-- CLOUD PROVIDERS -->
+  <!-- AWS -->
+  <rect x="130" y="715" width="260" height="90" rx="12" fill="rgba(255,153,0,0.06)" stroke="rgba(255,153,0,0.3)" stroke-width="1"/>
+  <text x="260" y="748" text-anchor="middle" font-size="28">☁️</text>
+  <text x="260" y="772" text-anchor="middle" fill="#ff9900" font-size="14" font-weight="600">Amazon Web Services</text>
+  <text x="260" y="790" text-anchor="middle" fill="#94a3b8" font-size="10">EC2, RDS, S3, VPC, Lambda, EKS, ALB</text>
+
+  <!-- GCP -->
+  <rect x="420" y="715" width="260" height="90" rx="12" fill="rgba(66,133,244,0.06)" stroke="rgba(66,133,244,0.3)" stroke-width="1"/>
+  <text x="550" y="748" text-anchor="middle" font-size="28">☁️</text>
+  <text x="550" y="772" text-anchor="middle" fill="#4285f4" font-size="14" font-weight="600">Google Cloud Platform</text>
+  <text x="550" y="790" text-anchor="middle" fill="#94a3b8" font-size="10">GCE, Cloud SQL, GCS, VPC, GKE, Functions</text>
+
+  <!-- Azure -->
+  <rect x="710" y="715" width="260" height="90" rx="12" fill="rgba(0,120,212,0.06)" stroke="rgba(0,120,212,0.3)" stroke-width="1"/>
+  <text x="840" y="748" text-anchor="middle" font-size="28">☁️</text>
+  <text x="840" y="772" text-anchor="middle" fill="#0078d4" font-size="14" font-weight="600">Microsoft Azure</text>
+  <text x="840" y="790" text-anchor="middle" fill="#94a3b8" font-size="10">VMs, Azure DB, Blob Storage, VNet, AKS</text>
+
+  <!-- Connection lines to clouds -->
+  <line x1="400" y1="700" x2="260" y2="715" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="600" y1="700" x2="550" y2="715" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="800" y1="700" x2="840" y2="715" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Bottom credit -->
+  <text x="600" y="840" text-anchor="middle" fill="#334155" font-size="11">Built from scratch by Rahul Wagh | youtube.com/@rahulwagh</text>
+  <text x="600" y="858" text-anchor="middle" fill="#475569" font-size="10">TypeScript • Next.js • Trigger.dev • Vercel AI SDK • Terraform</text>
 </svg>

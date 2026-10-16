@@ -1,0 +1,292 @@
+<svg viewBox="0 0 1500 850" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080818"/>
+      <stop offset="100%" style="stop-color:#0f0f2e"/>
+    </linearGradient>
+    <linearGradient id="step1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#312e81"/><stop offset="100%" style="stop-color:#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="step2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/><stop offset="100%" style="stop-color:#0c1929"/>
+    </linearGradient>
+    <linearGradient id="step3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#365314"/><stop offset="100%" style="stop-color:#1a2e0d"/>
+    </linearGradient>
+    <linearGradient id="step4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#78350f"/><stop offset="100%" style="stop-color:#451a03"/>
+    </linearGradient>
+    <linearGradient id="step5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#064e3b"/><stop offset="100%" style="stop-color:#022c22"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#818cf8"/>
+    </marker>
+    <marker id="greenArrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#34d399"/>
+    </marker>
+    <marker id="orangeArrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <rect width="1500" height="850" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="750" y="45" text-anchor="middle" fill="#e2e8f0" font-size="26" font-weight="bold">Trigger.dev Orchestrator Pipeline</text>
+  <text x="750" y="72" text-anchor="middle" fill="#94a3b8" font-size="13">orchestrator.ts: 5-Step Sequential Workflow with triggerAndWait()</text>
+
+  <!-- ORCHESTRATOR WRAPPER -->
+  <rect x="40" y="95" width="1420" height="710" rx="20" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="8,4" opacity="0.4"/>
+  <text x="60" y="118" fill="#a78bfa" font-size="12" font-weight="600">infraAgentOrchestrator (id: "infra-agent-orchestrator") | maxDuration: 600s | retry: 1</text>
+
+  <!-- STEP 1: PARSE -->
+  <rect x="80" y="145" width="240" height="250" rx="14" fill="url(#step1)" stroke="#6366f1" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="95" y="158" width="55" height="22" rx="4" fill="#6366f1"/>
+  <text x="122" y="174" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">STEP 1</text>
+  <text x="200" y="195" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="bold">Parse Request</text>
+  <text x="200" y="215" text-anchor="middle" fill="#a5b4fc" font-size="11">parse-request.ts</text>
+
+  <line x1="95" y1="228" x2="305" y2="228" stroke="#4338ca" stroke-width="1"/>
+
+  <text x="105" y="250" fill="#c4b5fd" font-size="10" font-weight="600">Input:</text>
+  <text x="105" y="265" fill="#94a3b8" font-size="10">userPrompt (string)</text>
+
+  <text x="105" y="290" fill="#c4b5fd" font-size="10" font-weight="600">AI Call:</text>
+  <text x="105" y="305" fill="#94a3b8" font-size="10">generateObject() + Gemini</text>
+  <text x="105" y="320" fill="#94a3b8" font-size="10">Schema: InfrastructureRequest</text>
+
+  <text x="105" y="345" fill="#c4b5fd" font-size="10" font-weight="600">Output:</text>
+  <text x="105" y="360" fill="#94a3b8" font-size="10">{ provider, region, resources,</text>
+  <text x="105" y="373" fill="#94a3b8" font-size="10">  projectName, tags }</text>
+
+  <!-- retry badge -->
+  <rect x="245" y="158" width="60" height="20" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+  <text x="275" y="172" text-anchor="middle" fill="#818cf8" font-size="9">retry: 3</text>
+
+  <!-- STEP 2: GENERATE -->
+  <rect x="370" y="145" width="240" height="250" rx="14" fill="url(#step2)" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="385" y="158" width="55" height="22" rx="4" fill="#2563eb"/>
+  <text x="412" y="174" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">STEP 2</text>
+  <text x="490" y="195" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="bold">Generate Terraform</text>
+  <text x="490" y="215" text-anchor="middle" fill="#93c5fd" font-size="11">generate-terraform.ts</text>
+
+  <line x1="385" y1="228" x2="595" y2="228" stroke="#1e3a5f" stroke-width="1"/>
+
+  <text x="395" y="250" fill="#93c5fd" font-size="10" font-weight="600">Input:</text>
+  <text x="395" y="265" fill="#94a3b8" font-size="10">infraRequest (parsed object)</text>
+
+  <text x="395" y="290" fill="#93c5fd" font-size="10" font-weight="600">AI Call:</text>
+  <text x="395" y="305" fill="#94a3b8" font-size="10">streamText() + Gemini</text>
+  <text x="395" y="320" fill="#22d3ee" font-size="10">Streams via aiOutputStream</text>
+
+  <text x="395" y="345" fill="#93c5fd" font-size="10" font-weight="600">Output:</text>
+  <text x="395" y="360" fill="#94a3b8" font-size="10">{ terraformCode: string }</text>
+  <text x="395" y="375" fill="#94a3b8" font-size="10">HCL code (main.tf)</text>
+
+  <rect x="535" y="158" width="60" height="20" rx="10" fill="#0c1929" stroke="#60a5fa" stroke-width="1"/>
+  <text x="565" y="172" text-anchor="middle" fill="#60a5fa" font-size="9">retry: 3</text>
+
+  <!-- STEP 3: VALIDATE -->
+  <rect x="660" y="145" width="240" height="250" rx="14" fill="url(#step3)" stroke="#22c55e" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="675" y="158" width="55" height="22" rx="4" fill="#16a34a"/>
+  <text x="702" y="174" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">STEP 3</text>
+  <text x="780" y="195" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="bold">Validate + Estimate</text>
+  <text x="780" y="215" text-anchor="middle" fill="#86efac" font-size="11">validate-terraform.ts</text>
+
+  <line x1="675" y1="228" x2="885" y2="228" stroke="#365314" stroke-width="1"/>
+
+  <text x="685" y="250" fill="#86efac" font-size="10" font-weight="600">Input:</text>
+  <text x="685" y="265" fill="#94a3b8" font-size="10">terraformCode (string)</text>
+
+  <text x="685" y="290" fill="#86efac" font-size="10" font-weight="600">AI Calls (2x):</text>
+  <text x="685" y="305" fill="#94a3b8" font-size="10">1. generateObject() - Validate</text>
+  <text x="685" y="320" fill="#94a3b8" font-size="10">2. generateObject() - Cost Est.</text>
+  <text x="685" y="335" fill="#fbbf24" font-size="10">Auto-fix loop (up to 3x)</text>
+
+  <text x="685" y="360" fill="#86efac" font-size="10" font-weight="600">Output:</text>
+  <text x="685" y="375" fill="#94a3b8" font-size="10">{ terraformCode, costEstimate }</text>
+
+  <rect x="825" y="158" width="60" height="20" rx="10" fill="#1a2e0d" stroke="#4ade80" stroke-width="1"/>
+  <text x="855" y="172" text-anchor="middle" fill="#4ade80" font-size="9">retry: 2</text>
+
+  <!-- STEP 4: APPROVAL -->
+  <rect x="950" y="145" width="240" height="250" rx="14" fill="url(#step4)" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="965" y="158" width="55" height="22" rx="4" fill="#d97706"/>
+  <text x="992" y="174" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">STEP 4</text>
+  <text x="1070" y="195" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="bold">Human Approval</text>
+  <text x="1070" y="215" text-anchor="middle" fill="#fde68a" font-size="11">wait.forToken()</text>
+
+  <line x1="965" y1="228" x2="1175" y2="228" stroke="#78350f" stroke-width="1"/>
+
+  <text x="975" y="250" fill="#fde68a" font-size="10" font-weight="600">Mechanism:</text>
+  <text x="975" y="265" fill="#94a3b8" font-size="10">1. wait.createToken()</text>
+  <text x="975" y="280" fill="#94a3b8" font-size="10">2. Send tokenId to frontend</text>
+  <text x="975" y="295" fill="#94a3b8" font-size="10">3. Task PAUSES (no compute)</text>
+  <text x="975" y="310" fill="#94a3b8" font-size="10">4. User clicks Approve/Reject</text>
+  <text x="975" y="325" fill="#94a3b8" font-size="10">5. /api/approve calls</text>
+  <text x="975" y="340" fill="#94a3b8" font-size="10">   wait.completeToken()</text>
+  <text x="975" y="355" fill="#94a3b8" font-size="10">6. Task RESUMES</text>
+
+  <text x="975" y="378" fill="#fde68a" font-size="10" font-weight="600">Timeout: 30 minutes</text>
+
+  <!-- STEP 5: DEPLOY -->
+  <rect x="1240" y="145" width="200" height="250" rx="14" fill="url(#step5)" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="1255" y="158" width="55" height="22" rx="4" fill="#059669"/>
+  <text x="1282" y="174" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">STEP 5</text>
+  <text x="1340" y="195" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="bold">Deploy</text>
+  <text x="1340" y="215" text-anchor="middle" fill="#6ee7b7" font-size="11">deploy-terraform.ts</text>
+
+  <line x1="1255" y1="228" x2="1425" y2="228" stroke="#064e3b" stroke-width="1"/>
+
+  <text x="1265" y="250" fill="#6ee7b7" font-size="10" font-weight="600">Sequence:</text>
+  <text x="1265" y="270" fill="#94a3b8" font-size="10">1. Strip markdown fences</text>
+  <text x="1265" y="285" fill="#94a3b8" font-size="10">2. Write main.tf to disk</text>
+  <text x="1265" y="300" fill="#94a3b8" font-size="10">3. terraform init</text>
+  <text x="1265" y="315" fill="#94a3b8" font-size="10">4. terraform apply</text>
+  <text x="1265" y="330" fill="#94a3b8" font-size="10">   -auto-approve</text>
+
+  <text x="1265" y="355" fill="#6ee7b7" font-size="10" font-weight="600">Output:</text>
+  <text x="1265" y="370" fill="#94a3b8" font-size="10">terraform stdout</text>
+
+  <rect x="1355" y="158" width="70" height="20" rx="10" fill="#022c22" stroke="#34d399" stroke-width="1"/>
+  <text x="1390" y="172" text-anchor="middle" fill="#34d399" font-size="9">no retry</text>
+
+  <!-- FLOW ARROWS -->
+  <!-- Step 1 -> Step 2 -->
+  <line x1="320" y1="270" x2="365" y2="270" stroke="#818cf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="8,4"/>
+  <text x="342" y="260" text-anchor="middle" fill="#818cf8" font-size="9">triggerAndWait</text>
+
+  <!-- Step 2 -> Step 3 -->
+  <line x1="610" y1="270" x2="655" y2="270" stroke="#818cf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="8,4"/>
+  <text x="632" y="260" text-anchor="middle" fill="#818cf8" font-size="9">triggerAndWait</text>
+
+  <!-- Step 3 -> Step 4 -->
+  <line x1="900" y1="270" x2="945" y2="270" stroke="#818cf8" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="8,4"/>
+  <text x="922" y="260" text-anchor="middle" fill="#818cf8" font-size="9">triggerAndWait</text>
+
+  <!-- Step 4 -> Step 5 -->
+  <line x1="1190" y1="270" x2="1235" y2="270" stroke="#34d399" stroke-width="2.5" marker-end="url(#greenArrow)" stroke-dasharray="8,4"/>
+  <text x="1212" y="260" text-anchor="middle" fill="#34d399" font-size="9">approved!</text>
+
+  <!-- DATA FLOW (bottom section) -->
+  <text x="750" y="450" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="bold">Data Transformation Pipeline</text>
+
+  <!-- Data boxes -->
+  <rect x="80" y="480" width="180" height="70" rx="10" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="170" y="505" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="600">Natural Language</text>
+  <text x="170" y="525" text-anchor="middle" fill="#94a3b8" font-size="10">"Deploy a web server</text>
+  <text x="170" y="540" text-anchor="middle" fill="#94a3b8" font-size="10">on AWS with EC2..."</text>
+
+  <rect x="320" y="480" width="180" height="70" rx="10" fill="#0c1929" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="410" y="505" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="600">Structured JSON</text>
+  <text x="410" y="525" text-anchor="middle" fill="#94a3b8" font-size="10">{ provider: "aws",</text>
+  <text x="410" y="540" text-anchor="middle" fill="#94a3b8" font-size="10">  resources: [...] }</text>
+
+  <rect x="560" y="480" width="180" height="70" rx="10" fill="#1a2e0d" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="650" y="505" text-anchor="middle" fill="#86efac" font-size="12" font-weight="600">Terraform HCL</text>
+  <text x="650" y="525" text-anchor="middle" fill="#94a3b8" font-size="10">resource "aws_instance"</text>
+  <text x="650" y="540" text-anchor="middle" fill="#94a3b8" font-size="10">  { ami = "ami-..." }</text>
+
+  <rect x="800" y="480" width="180" height="70" rx="10" fill="#365314" stroke="#84cc16" stroke-width="1.5"/>
+  <text x="890" y="505" text-anchor="middle" fill="#bef264" font-size="12" font-weight="600">Validated + Costed</text>
+  <text x="890" y="525" text-anchor="middle" fill="#94a3b8" font-size="10">valid: true</text>
+  <text x="890" y="540" text-anchor="middle" fill="#94a3b8" font-size="10">cost: "$12.50/mo"</text>
+
+  <rect x="1040" y="480" width="180" height="70" rx="10" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="1130" y="505" text-anchor="middle" fill="#fde68a" font-size="12" font-weight="600">Human Decision</text>
+  <text x="1130" y="530" text-anchor="middle" fill="#34d399" font-size="11">APPROVE</text>
+  <text x="1130" y="545" text-anchor="middle" fill="#94a3b8" font-size="10">or REJECT</text>
+
+  <rect x="1280" y="480" width="180" height="70" rx="10" fill="#022c22" stroke="#10b981" stroke-width="1.5"/>
+  <text x="1370" y="505" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="600">Live Infrastructure</text>
+  <text x="1370" y="525" text-anchor="middle" fill="#94a3b8" font-size="10">EC2 running in</text>
+  <text x="1370" y="540" text-anchor="middle" fill="#94a3b8" font-size="10">eu-north-1</text>
+
+  <!-- Data flow arrows -->
+  <line x1="260" y1="515" x2="315" y2="515" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="500" y1="515" x2="555" y2="515" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="740" y1="515" x2="795" y2="515" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="980" y1="515" x2="1035" y2="515" stroke="#fbbf24" stroke-width="2" marker-end="url(#orangeArrow)"/>
+  <line x1="1220" y1="515" x2="1275" y2="515" stroke="#34d399" stroke-width="2" marker-end="url(#greenArrow)"/>
+
+  <!-- STREAM EVENTS (bottom) -->
+  <text x="750" y="610" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="bold">Real-Time Stream Events to Frontend</text>
+  <text x="750" y="632" text-anchor="middle" fill="#94a3b8" font-size="11">Every step emits progress updates via progressStream.append() with { target: "root" }</text>
+
+  <!-- Stream event boxes -->
+  <rect x="80" y="650" width="160" height="55" rx="8" fill="#111" stroke="#6366f1" stroke-width="1"/>
+  <text x="160" y="670" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="600">step: "start"</text>
+  <text x="160" y="690" text-anchor="middle" fill="#94a3b8" font-size="9">"Starting AI Agent..."</text>
+
+  <rect x="260" y="650" width="160" height="55" rx="8" fill="#111" stroke="#6366f1" stroke-width="1"/>
+  <text x="340" y="670" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="600">step: "parse"</text>
+  <text x="340" y="690" text-anchor="middle" fill="#94a3b8" font-size="9">"Parsed: 2 resources on AWS"</text>
+
+  <rect x="440" y="650" width="160" height="55" rx="8" fill="#111" stroke="#3b82f6" stroke-width="1"/>
+  <text x="520" y="670" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">step: "generate"</text>
+  <text x="520" y="690" text-anchor="middle" fill="#94a3b8" font-size="9">"Generating Terraform..."</text>
+
+  <rect x="620" y="650" width="160" height="55" rx="8" fill="#111" stroke="#22c55e" stroke-width="1"/>
+  <text x="700" y="670" text-anchor="middle" fill="#86efac" font-size="10" font-weight="600">step: "validate"</text>
+  <text x="700" y="690" text-anchor="middle" fill="#94a3b8" font-size="9">"Validated successfully"</text>
+
+  <rect x="800" y="650" width="160" height="55" rx="8" fill="#111" stroke="#84cc16" stroke-width="1"/>
+  <text x="880" y="670" text-anchor="middle" fill="#bef264" font-size="10" font-weight="600">step: "cost"</text>
+  <text x="880" y="690" text-anchor="middle" fill="#94a3b8" font-size="9">"Est. cost: $12.50/mo"</text>
+
+  <rect x="980" y="650" width="160" height="55" rx="8" fill="#111" stroke="#f59e0b" stroke-width="1"/>
+  <text x="1060" y="670" text-anchor="middle" fill="#fde68a" font-size="10" font-weight="600">step: "approval"</text>
+  <text x="1060" y="690" text-anchor="middle" fill="#94a3b8" font-size="9">"Waiting for approval..."</text>
+
+  <rect x="1160" y="650" width="160" height="55" rx="8" fill="#111" stroke="#10b981" stroke-width="1"/>
+  <text x="1240" y="670" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">step: "deploy"</text>
+  <text x="1240" y="690" text-anchor="middle" fill="#94a3b8" font-size="9">"Deployed successfully!"</text>
+
+  <!-- Arrow chain across streams -->
+  <line x1="240" y1="677" x2="255" y2="677" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="420" y1="677" x2="435" y2="677" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="600" y1="677" x2="615" y2="677" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="780" y1="677" x2="795" y2="677" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="960" y1="677" x2="975" y2="677" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="1140" y1="677" x2="1155" y2="677" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- VALIDATE AUTO-FIX LOOP -->
+  <text x="780" y="745" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">Step 3: Self-Healing Validation Loop</text>
+
+  <rect x="310" y="765" width="150" height="45" rx="8" fill="#1a2e0d" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="385" y="793" text-anchor="middle" fill="#86efac" font-size="11">AI Validate Code</text>
+
+  <rect x="530" y="765" width="100" height="45" rx="20" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="580" y="793" text-anchor="middle" fill="#fde68a" font-size="11">valid?</text>
+
+  <rect x="710" y="765" width="150" height="45" rx="8" fill="#1a2e0d" stroke="#84cc16" stroke-width="1.5"/>
+  <text x="785" y="793" text-anchor="middle" fill="#bef264" font-size="11">Estimate Costs</text>
+
+  <rect x="940" y="765" width="120" height="45" rx="8" fill="#022c22" stroke="#10b981" stroke-width="1.5"/>
+  <text x="1000" y="793" text-anchor="middle" fill="#6ee7b7" font-size="11">Return Result</text>
+
+  <!-- Fix loop -->
+  <rect x="500" y="830" width="160" height="35" rx="8" fill="#78350f" stroke="#f97316" stroke-width="1"/>
+  <text x="580" y="853" text-anchor="middle" fill="#fb923c" font-size="10">AI Fix Code (generateText)</text>
+
+  <line x1="460" y1="788" x2="525" y2="788" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="492" y="780" text-anchor="middle" fill="#94a3b8" font-size="8"> </text>
+
+  <!-- Yes path -->
+  <line x1="630" y1="788" x2="705" y2="788" stroke="#34d399" stroke-width="1.5" marker-end="url(#greenArrow)"/>
+  <text x="668" y="780" text-anchor="middle" fill="#34d399" font-size="9">YES</text>
+
+  <line x1="860" y1="788" x2="935" y2="788" stroke="#34d399" stroke-width="1.5" marker-end="url(#greenArrow)"/>
+
+  <!-- No path (loop) -->
+  <line x1="580" y1="810" x2="580" y2="825" stroke="#f97316" stroke-width="1.5" marker-end="url(#orangeArrow)"/>
+  <text x="595" y="822" fill="#fb923c" font-size="9">NO</text>
+
+  <!-- Fix -> back to validate -->
+  <path d="M 500 848 L 350 848 L 350 788 L 305 788" stroke="#f97316" stroke-width="1.5" fill="none" marker-end="url(#orangeArrow)"/>
+  <text x="345" y="840" fill="#fb923c" font-size="9">recursive triggerAndWait</text>
+</svg>
