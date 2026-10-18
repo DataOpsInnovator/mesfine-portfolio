@@ -1,6 +1,6 @@
 (() => {
   const menu = document.querySelector('.menu');
-  const nav = document.querySelector('#primary-navigation');
+  const nav = document.querySelector('#primary-navigation') || document.querySelector('.nav-wrap nav');
 
   const closeMenu = () => {
     if (!menu || !nav) return;
