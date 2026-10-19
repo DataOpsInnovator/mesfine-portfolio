@@ -48,8 +48,11 @@ errors, count = [], 0
 for page in sorted(root.rglob("*.html")):
     if any(part in skip for part in page.relative_to(root).parts):
         continue
+    html = page.read_text(encoding="utf-8")
+    if r"\n<meta" in html:
+        errors.append(f"{page.relative_to(root)}: literal backslash-n before metadata tag")
     parser = Parser()
-    parser.feed(page.read_text(encoding="utf-8"))
+    parser.feed(html)
     for attr, raw in parser.refs:
         if raw.startswith(("#", "data:", "mailto:", "tel:", "javascript:")):
             continue
