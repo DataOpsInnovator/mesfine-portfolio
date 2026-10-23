@@ -2,7 +2,7 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 required=(
-  "index.html" "README.md" "CONTENT-CHECKLIST.md"
+  "index.html" "README.md"
   "assets/css/main.css" "assets/js/main.js"
   "scripts/sync-original-assets.sh" ".github/workflows/deploy.yml"
   "assets/images/profile.png" "assets/images/favicon.svg" "assets/images/social-card.png"

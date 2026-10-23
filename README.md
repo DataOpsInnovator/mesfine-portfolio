@@ -1,96 +1,72 @@
 # Mesfin Getachew — Platform Engineering Portfolio
 
-A static, GitHub Pages-ready portfolio presenting cloud platforms, Infrastructure as Code, Kubernetes, CI/CD and GitOps, DevSecOps, and Observability/SRE.
+Live site: <https://dataopsinnovator.github.io/mesfine-portfolio/>
 
-## Included
+A static portfolio for cloud platform engineering work: AWS and Azure, Kubernetes, Infrastructure as Code, CI/CD and GitOps, DevSecOps, and observability. Each project has a case study that states what its source repository contains and what is a reference pattern.
 
-1. Responsive dark technical design and platform-engineering identity
-2. Six capability areas: Cloud Platforms, IaC, Kubernetes, CI/CD & GitOps, DevSecOps, Observability/SRE
-3. Seven project showcases, including featured CareFlow healthcare cloud platform
-4. Individual engineering case-study pages, including `projects/careflow.html`
-5. Project filtering by Platform / Cloud / Delivery (using the homepage's filter controls)
-6. Experience timeline, certifications and education (verify source content before publishing)
-7. Résumé path: `assets/resume/Mesfin-Getachew-Resume.pdf`
-8. GitHub, LinkedIn and email CTAs (verify the links)
-9. Mobile navigation and SEO/OpenGraph metadata
-10. GitHub Pages deployment workflow (supports the repository default branch and main)
-11. Original-image restoration and verification scripts
+## Case studies
 
-## Structure
+| Project | Focus |
+| --- | --- |
+| CareFlow | Multi-region healthcare cloud platform (synthetic data) |
+| AI-Infra-Agent | AI-assisted Terraform and infrastructure review |
+| AI-Incident-Copilot | Local retrieval-augmented incident assistant (Python, Oracle Database 26ai, LangChain, Ollama) |
+| Java GitOps CI/CD Platform | Jenkins, Maven, SonarQube, Helm, Argo CD and Kubernetes |
+| Cloud Migration & DR | AWS and Azure migration and disaster recovery with Terraform and Ansible |
+| Terraform on AWS | Terraform infrastructure code; the CI delivery diagram is a reference pattern, because the source repository has no Jenkinsfile |
+| Jenkins Terraform Pipeline | Parameterized Jenkins pipeline for the Terraform lifecycle on AWS; no Docker or Kubernetes delivery pipeline |
+
+## Stack
+
+Plain HTML, CSS and vanilla JavaScript. There is no build step, no framework, and no third-party script. Diagrams and project artwork are inline-friendly SVG.
 
 ```text
 .
-├── index.html
-├── README.md
-├── CONTENT-CHECKLIST.md
-├── assets/{css,js,images,resume}/
-├── projects/
-├── scripts/
-└── .github/workflows/deploy.yml
+├── index.html                  # single-page portfolio
+├── projects/                   # one case-study page per project
+├── assets/
+│   ├── css/main.css
+│   ├── js/main.js              # mobile menu, project filters
+│   ├── images/                 # project artwork, profile, social card, favicon
+│   ├── diagrams/               # architecture SVGs
+│   └── resume/
+├── scripts/verify-portfolio.sh # required files and local reference check
+└── .github/
+    ├── workflows/deploy.yml    # validate, then deploy to GitHub Pages
+    ├── workflows/quality.yml   # HTML validation, link check, Lighthouse
+    └── dependabot.yml          # weekly updates for pinned Actions
 ```
 
-## Original image assets
-
-Featured original filenames:
-`careflow-logo.png`, `ai-incident-copilot.png`, `ai-infra-agent.png`, `cloud-migration.png`, `devops-project.png`, `java-gitops-pipeline.png`, `terraform-jenkins.png`.
-
-Other original assets: `cdi-logo.png`, `claimwise-ai-logo.png`, `logo.png`, `profile.jpg`, `property-management-logo.png`, `python-mysql-db.png`, `shiro-logo.png`.
-
-The uploaded ZIP does not contain all original binary image files. Restore them from the source repository:
-
-```bash
-bash scripts/sync-original-assets.sh
-```
-
-If the original branch/path differs, set `REPO_RAW` to the raw URL directory containing the image files:
-
-```bash
-REPO_RAW="https://raw.githubusercontent.com/OWNER/REPO/BRANCH/images" bash scripts/sync-original-assets.sh
-```
-
-## Résumé
-
-Place your current résumé at `assets/resume/Mesfin-Getachew-Resume.pdf`. Verify the download link and use only a version you intend to publish.
-
-## Preview and verify
+## Run locally
 
 ```bash
 python3 -m http.server 8000
-# Open http://localhost:8000
-bash scripts/verify-portfolio.sh
+# open http://localhost:8000
 ```
 
-## Deploy to GitHub Pages
+## Checks
 
-1. Push the repository to the `main` branch.
-2. In GitHub, open **Settings → Pages** and select **GitHub Actions** as the source.
-3. Push a commit or manually run the workflow in **Actions**.
-4. Confirm the workflow succeeds.
+```bash
+bash scripts/verify-portfolio.sh                       # required files and local links
+npx html-validate@9.7.1 index.html "projects/*.html"   # HTML validity (config: .htmlvalidate.json)
+```
 
-Expected URL: `https://dataopsinnovator.github.io/mesfine-portfolio/`
+On every pull request and push, GitHub Actions runs:
 
-## Engineering quality standards
+- **Validate and deploy** (`deploy.yml`): the verifier, then deployment to GitHub Pages on pushes to the default branch.
+- **Quality checks** (`quality.yml`): HTML validation, local and external link checks, and Lighthouse CI with minimum scores for accessibility (0.95) and SEO (0.9), and warnings for best practices and performance (`.lighthouserc.json`).
 
-- Keep project descriptions evidence-based. Separate implemented features from planned or conceptual capabilities.
-- For each flagship case study, document the problem, architecture, design trade-offs, validation, security boundaries, observability, recovery approach, cost considerations, and limitations.
-- Publish metrics only when reproducible and approved for disclosure; never fabricate cost savings, SLOs, availability, compliance, or performance claims.
-- Preserve keyboard access, visible focus, descriptive link text, reduced-motion support, and mobile navigation behavior.
-- Include rel="noopener noreferrer" on external links opened in a new tab.
-- Confirm the actual repository default branch and GitHub Pages configuration before publishing.
+All Actions are pinned to commit SHAs; Dependabot proposes updates.
 
-## Publishing checklist
+## Deploy
 
-- [ ] Restore original images and confirm they render.
-- [ ] Add the current résumé PDF.
-- [ ] Verify name, contact details, GitHub and LinkedIn URLs.
-- [ ] Verify employment dates, certifications and education.
-- [ ] Ensure each case study describes work actually performed; label concepts clearly.
-- [ ] Test all six project pages, mobile navigation and project filters.
-- [ ] Test résumé download and social/contact links.
-- [ ] Run `bash scripts/verify-portfolio.sh`.
-- [ ] Confirm GitHub Pages deployment succeeds.
-- [ ] Add metrics only when substantiated; do not invent cost, reliability or performance claims.
+1. In **Settings → Pages**, set the source to **GitHub Actions**.
+2. Push to `master` (the workflows also accept `main`).
+3. Confirm the **Validate and deploy** workflow succeeds.
 
-## Architecture choice
+## Content rules
 
-The site intentionally remains static: no backend, database or frontend framework is required.
+- Describe only what the source repository contains. Label concepts and reference patterns as such.
+- Publish metrics, SLOs, cost savings, compliance claims and certifications only when they can be substantiated.
+- Keep descriptions on the home page, the case-study pages, and the diagrams consistent.
+- Keep keyboard access, visible focus, descriptive link text, reduced-motion support, and `rel="noopener noreferrer"` on links that open in a new tab.
