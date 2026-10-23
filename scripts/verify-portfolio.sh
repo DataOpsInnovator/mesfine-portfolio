@@ -5,7 +5,7 @@ required=(
   "index.html" "README.md" "CONTENT-CHECKLIST.md"
   "assets/css/main.css" "assets/js/main.js"
   "scripts/sync-original-assets.sh" ".github/workflows/deploy.yml"
-  "assets/images/profile.png"
+  "assets/images/profile.png" "assets/images/favicon.svg" "assets/images/social-card.png"
   "assets/images/careflow-brand.svg" "assets/images/ai-infra-agent-brand.svg"
   "assets/images/ai-incident-copilot-brand.svg" "assets/images/java-gitops-brand.svg"
   "assets/images/cloud-migration-dr-brand.svg" "assets/images/terraform-jenkins-brand.svg"
