@@ -4,7 +4,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 required=(
   "index.html" "README.md"
   "assets/css/main.css" "assets/js/main.js"
-  "scripts/sync-original-assets.sh" ".github/workflows/deploy.yml"
+  ".github/workflows/deploy.yml" ".github/workflows/quality.yml"
   "assets/images/profile.png" "assets/images/favicon.svg" "assets/images/social-card.png"
   "assets/images/careflow-brand.svg" "assets/images/ai-infra-agent-brand.svg"
   "assets/images/ai-incident-copilot-brand.svg" "assets/images/java-gitops-brand.svg"
