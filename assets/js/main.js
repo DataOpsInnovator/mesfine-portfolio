@@ -36,10 +36,14 @@
         item.classList.toggle('active', active);
         item.setAttribute('aria-pressed', String(active));
       });
+      let visible = 0;
       document.querySelectorAll('.work').forEach(card => {
         const tags = (card.dataset.tags || '').split(/\s+/);
         card.hidden = filter !== 'all' && !tags.includes(filter);
+        if (!card.hidden) visible += 1;
       });
+      const status = document.getElementById('filter-status');
+      if (status) status.textContent = `Showing ${visible} ${visible === 1 ? 'project' : 'projects'}`;
     });
   });
 

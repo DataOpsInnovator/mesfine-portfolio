@@ -52,3 +52,14 @@
   .project-brand-frame{padding:14px}
   .project-brand-frame img{max-height:180px}
 }
+
+/* Accessibility utilities and card links */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.work{position:relative}
+.work a.stretched::after{content:"";position:absolute;inset:0}
+.work a.stretched:focus-visible{outline:none}
+.work:has(a.stretched:focus-visible){outline:3px solid #70e3f2;outline-offset:4px}
+.work-body .more{color:#70e3f2;font-size:.84rem;font-weight:850}
+.work:hover .more{text-decoration:underline}
+/* Shared case-study panel (previously defined only inside careflow.html) */
+.careflow-panel{border:1px solid #202b3a;border-radius:16px;background:#0c1119;padding:26px}
