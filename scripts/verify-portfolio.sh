@@ -9,7 +9,7 @@ required=(
   "assets/images/careflow-brand.svg" "assets/images/ai-infra-agent-brand.svg"
   "assets/images/ai-incident-copilot-brand.svg" "assets/images/java-gitops-brand.svg"
   "assets/images/cloud-migration-dr-brand.svg" "assets/images/terraform-jenkins-brand.svg"
-  "assets/images/devops-cicd-brand.svg"
+  "assets/images/devops-cicd-brand.svg" "assets/images/servicing-ledger-brand.svg"
   "assets/diagrams/careflow-reference-architecture.svg"
   "assets/diagrams/ai-infra-agent-review-workflow.svg"
   "assets/diagrams/ai-infra-agent-orchestrator-pipeline.svg"
@@ -17,11 +17,11 @@ required=(
   "assets/diagrams/java-gitops-pipeline.svg"
   "assets/diagrams/cloud-migration-dr-architecture.svg"
   "assets/diagrams/terraform-jenkins-architecture.svg"
-  "assets/diagrams/devops-cicd-pipeline-architecture.svg"
+  "assets/diagrams/devops-cicd-pipeline-architecture.svg" "assets/diagrams/servicing-ledger-architecture.svg"
   "projects/ai-infra-agent.html" "projects/ai-incident-copilot.html"
   "projects/careflow.html" "projects/java-gitops.html"
   "projects/cloud-migration-dr.html" "projects/terraform-jenkins.html"
-  "projects/devops-cicd.html"
+  "projects/devops-cicd.html" "projects/servicing-ledger-platform.html"
 )
 failed=0
 for f in "${required[@]}"; do

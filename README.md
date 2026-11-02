@@ -9,6 +9,7 @@ A static portfolio for cloud platform engineering work: AWS and Azure, Kubernete
 | Project | Focus |
 | --- | --- |
 | CareFlow | Multi-region healthcare cloud platform (synthetic data) |
+| Servicing Ledger Platform | Synthetic loan-servicing workflow with idempotent writes, an audit trail and a transactional outbox; local Python implementation, AWS design not deployed |
 | AI-Infra-Agent | AI-assisted Terraform and infrastructure review |
 | AI-Incident-Copilot | Local retrieval-augmented incident assistant (Python, Oracle Database 26ai, LangChain, Ollama) |
 | Java GitOps CI/CD Platform | Jenkins, Maven, SonarQube, Helm, Argo CD and Kubernetes |
