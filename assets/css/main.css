@@ -66,3 +66,19 @@
 
 /* Featured card styles (moved from inline <style> in index.html) */
 .careflow-featured{border-color:#16b8b0;box-shadow:0 0 0 1px #16b8b022,0 16px 45px #0003}.careflow-logo-frame{background:#fff;display:grid;place-items:center;padding:12px}.careflow-logo-frame img{object-fit:contain!important;width:100%;height:100%;max-height:300px}.careflow-featured .work-body small{color:#54ddd0}
+
+/* Case-study tables and status labels */
+.table-wrap{overflow-x:auto;margin-top:26px;border:1px solid #202b3a;border-radius:14px;background:#0c1119}
+.data-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.data-table th,.data-table td{padding:13px 16px;text-align:left;vertical-align:top;border-bottom:1px solid #202b3a}
+.data-table thead th{color:#98a6b8;font-size:.78rem;font-weight:700}
+.data-table tbody tr:last-child td{border-bottom:0}
+.data-table td{color:#cbd5e1}
+.data-table code,.careflow-panel li code,.lead code,.copy code{font-size:.92em;color:#cfe9ff}
+.status{display:inline-block;padding:2px 10px;border:1px solid;border-radius:999px;font-size:.74rem;font-weight:800;white-space:nowrap}
+.status.ok{color:#7ee0a1;border-color:#2f6a4a}
+.status.warn{color:#f1c36b;border-color:#76602b}
+.status.none{color:#a9b8ca;border-color:#37465a}
+.careflow-panel ul{margin:0;padding-left:20px;color:#98a6b8}
+.careflow-panel li{margin:0 0 12px}
+.careflow-panel li strong{color:#edf2f7}
