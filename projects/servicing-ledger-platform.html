@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Servicing Ledger Platform: a synthetic loan-servicing workflow with idempotent writes, an audit trail and a transactional outbox. The local implementation runs; the AWS design is a reference and is not deployed."><link rel="canonical" href="https://dataopsinnovator.github.io/mesfine-portfolio/projects/servicing-ledger-platform.html"><meta property="og:type" content="article"><meta property="og:title" content="Servicing Ledger Platform | Mesfin Getachew"><meta property="og:description" content="Idempotent writes, an audit trail and a transactional outbox for a synthetic loan-servicing workflow. Local implementation verified; AWS design not deployed."><meta property="og:image" content="https://dataopsinnovator.github.io/mesfine-portfolio/assets/images/social-card.png"><meta name="twitter:card" content="summary_large_image">
+<title>Servicing Ledger Platform | Mesfin Getachew</title><link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/css/main.css"></head><body>
+<header><div class="shell nav-wrap"><a class="brand" href="../index.html" aria-label="Mesfin Getachew, home">MG<span>.</span></a><button class="menu" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button><nav aria-label="Primary"><a href="../index.html#capabilities">Capabilities</a><a href="../index.html#work">Work</a><a href="../index.html#contact">Contact</a></nav></div></header>
+<main><section class="section"><div class="shell"><p class="eyebrow">Python · Idempotency · Transactional outbox · AWS reference design</p><h1 style="font-size:clamp(2.8rem,7vw,5.8rem);line-height:.98;letter-spacing:-.055em">Servicing Ledger Platform</h1><p class="lede">A synthetic loan-servicing workflow that records an entry safely when clients retry and downstream processing is asynchronous.</p><div class="work-img project-brand-frame" style="margin-top:32px;aspect-ratio:16/7"><img src="../assets/images/servicing-ledger-brand.svg" alt="Servicing Ledger Platform project visual" width="1200" height="480" loading="lazy"></div></div></section>
+
+<section class="section dark"><div class="shell"><p class="eyebrow">STATUS</p><h2>What exists, and what is design only</h2><p class="lead">This is an independent portfolio project. It uses synthetic data, does not move money, and does not claim compliance. The table separates what runs from what is planned, using the repository’s own status labels.</p>
+<div class="table-wrap"><table class="data-table"><caption class="sr-only">Implementation status of each capability</caption><thead><tr><th scope="col">Capability</th><th scope="col">Status</th><th scope="col">Evidence</th></tr></thead><tbody>
+<tr><td>Entry API with idempotency and a single transaction boundary</td><td><span class="status ok">Implemented</span></td><td>Ran locally; results below</td></tr>
+<tr><td>Outbox worker with unique consumer receipts</td><td><span class="status ok">Implemented</span></td><td>Ran locally; results below</td></tr>
+<tr><td>Helm chart</td><td><span class="status warn">Starter</span></td><td>Single replica, disposable; not run</td></tr>
+<tr><td>Automated tests and CI</td><td><span class="status none">Not yet</span></td><td>None in the repository</td></tr>
+<tr><td>AWS EKS, RDS PostgreSQL, SQS, Terraform, GitOps</td><td><span class="status none">Design only</span></td><td>Documents and ADRs; the Terraform folder holds a README, no code</td></tr>
+<tr><td>SLOs, RTO and RPO, cost estimates</td><td><span class="status none">Proposed</span></td><td>Targets, not measurements</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="shell"><p class="eyebrow">PROBLEM</p><h2>Retries and slow consumers must not create duplicate effects</h2><p class="lead">A servicing channel needs a trustworthy record of each entry even when callers retry and downstream consumers lag. Returning <code>200</code> is not enough: the entry could exist without its event, or the event could be delivered twice. The scope stops before settlement, payments or customer communication.</p>
+<div class="principles"><article><h3>One transaction</h3><p>The entry, its idempotency key and request hash, an append-only audit row and an outbox event commit together or not at all.</p></article><article><h3>Idempotency contract</h3><p>The same key with the same body returns the original entry. The same key with a different body returns <code>409</code>. Both rules are enforced by the database, not by application memory.</p></article><article><h3>At-least-once delivery</h3><p>Consumers keep a unique receipt per event. This makes the business effect idempotent at the consumer. It is not distributed exactly-once processing.</p></article></div></div></section>
+
+<section class="section dark"><div class="shell"><p class="eyebrow">ARCHITECTURE</p><h2>Local implementation and AWS reference design</h2>
+<figure style="margin:28px 0"><img src="../assets/diagrams/servicing-ledger-architecture.svg" alt="Two rows of five stages. Top row, running locally: client, servicing API, a single transaction writing entry, audit and outbox rows, an outbox worker, and a consumer receipt. Bottom row, AWS reference design not deployed: API on EKS, PostgreSQL, outbox publisher, SQS Standard with a dead-letter queue, and a consumer." width="1400" height="650" style="display:block;width:100%;height:auto;border:1px solid #202b3a;border-radius:16px;background:#080d15"><figcaption style="margin-top:12px;color:#98a6b8;font-size:.9rem">The top row is the code in the repository (SQLite and a polling worker). The bottom row is the proposed AWS target. It is documented but not provisioned.</figcaption></figure></div></section>
+
+<section class="section"><div class="shell"><p class="eyebrow">OBSERVED BEHAVIOUR</p><h2>What a local run showed</h2><p class="lead">The repository records no test results, so I ran the code and kept the output. This is a manual verification of commit <code>9a45f00</code> on Python 3.12.3 on 2 November 2026, with synthetic data. It is not an automated test suite. Re-run it to confirm.</p>
+<div class="table-wrap"><table class="data-table"><caption class="sr-only">Observed results from a local run</caption><thead><tr><th scope="col">Check</th><th scope="col">Observed</th></tr></thead><tbody>
+<tr><td>Create an entry with a new key</td><td><code>201 Created</code>, a <code>Location</code> header, state <code>RECORDED</code></td></tr>
+<tr><td>Repeat the same key and body</td><td><code>200 OK</code>, header <code>Idempotency-Replayed: true</code>, same entry ID</td></tr>
+<tr><td>Reuse the key with a different amount</td><td><code>409</code> <code>IDEMPOTENCY_CONFLICT</code></td></tr>
+<tr><td>Missing key, or a loan reference without the <code>SYN-</code> prefix</td><td><code>400</code> with <code>INVALID_IDEMPOTENCY_KEY</code> or <code>INVALID_REQUEST</code></td></tr>
+<tr><td>Worker, first run, then second run</td><td>First run recorded one receipt; second run recorded none. Rows: 1 entry, 2 audit events, 1 outbox event, 1 receipt</td></tr>
+<tr><td>Forced replay: outbox row marked unhandled, worker re-run</td><td>No new receipt; row counts unchanged</td></tr>
+<tr><td>40 requests, same key, 8 concurrent workers</td><td>One <code>201</code> and 39 <code>200</code> replays; one entry, one audit row, one outbox row</td></tr>
+<tr><td>Burst of 40 simultaneous connections, same key</td><td>The same single-row invariant held, but 13 connections were reset by the server before a response</td></tr>
+</tbody></table></div>
+<p class="copy" style="margin-top:18px">The resets come from the standard-library server, whose listen backlog defaults to 5. It is a limit of the simulator, not a data-integrity defect, and it is the case idempotency keys exist for: a client that never saw a response retries with the same key. A production service would sit behind a real server with a larger backlog.</p>
+<div class="careflow-panel" style="margin-top:24px"><h3 style="margin-top:0">Reproduce it</h3><pre style="white-space:pre-wrap;overflow:auto;color:#cbd5e1">git clone https://github.com/DataOpsInnovator/servicing-ledger-platform.git
+cd servicing-ledger-platform
+export SERVICING_DB_PATH="$PWD/work/servicing.db"
+python3 app/servicing_api.py &amp;
+SERVER_PID=$!
+sleep 1
+curl -i -X POST localhost:8080/v1/servicing-entries \
+  -H 'Content-Type: application/json' -H 'Idempotency-Key: demo-entry-000001' \
+  -d '{"loan_ref":"SYN-LOAN-0001","amount_cents":12500,"currency":"USD","effective_date":"2026-11-02"}'
+python3 app/outbox_worker.py --once
+kill $SERVER_PID</pre><p>Requires Python 3.12 or newer and uses only the standard library. The README gives PowerShell equivalents. Repeat the <code>curl</code> command to see the replay, change the amount to see the conflict, and delete the <code>work/</code> directory when finished. The <code>sleep</code> gives the server time to start listening. Not run for this page: the container image, the Helm chart, load or performance tests, and any AWS component.</p></div></div></section>
+
+<section class="section dark"><div class="shell"><p class="eyebrow">DECISIONS AND TRADE-OFFS</p><h2>Choices a reviewer can challenge</h2>
+<div class="careflow-panel"><ul>
+<li><strong>Relational source of truth.</strong> The entry, key, audit row and outbox row need one atomic boundary. PostgreSQL is the proposed AWS database. SQLite is only a local simulator, and writers are serialized with <code>BEGIN IMMEDIATE</code>.</li>
+<li><strong>Key plus request hash.</strong> A stored hash of the canonical payload distinguishes a safe retry from a conflicting reuse. How long keys are retained is an open decision recorded in the project documents.</li>
+<li><strong>EKS for one small API.</strong> The project’s own ADR says ECS would be simpler and cheaper for this service. EKS is chosen to demonstrate platform patterns, at the cost of cluster, upgrade and on-call burden.</li>
+<li><strong>Single region, backup and restore.</strong> The proposed targets are an 8-hour RTO and a 24-hour RPO. They are unmeasured until a restore exercise is run. Active-active was rejected for the ordering and conflict complexity it adds.</li>
+<li><strong>Cost guardrails first.</strong> The project runs locally by default. Any AWS stack needs a budget, tags, a time box and a teardown. Budget alerts can lag, so they are not a spending cap.</li>
+</ul></div>
+<h2 style="margin-top:42px">Known gaps</h2>
+<div class="careflow-panel"><ul>
+<li>No automated tests or CI, so the checks above are manual.</li>
+<li>No AWS deployment. The Terraform directory contains only a README.</li>
+<li>The local server is not production-grade, as the burst test showed.</li>
+<li>The project’s own roadmap names the next steps: a PostgreSQL adapter with migrations and tests, an SQS publisher and consumer, OIDC-based CI with image scanning, and a measured restore and reconciliation exercise.</li>
+</ul></div>
+<p style="margin-top:22px"><a href="https://github.com/DataOpsInnovator/servicing-ledger-platform" target="_blank" rel="noopener noreferrer">Source repository ↗</a> · <a href="https://github.com/DataOpsInnovator/servicing-ledger-platform/blob/main/docs/architecture.md" target="_blank" rel="noopener noreferrer">Architecture ↗</a> · <a href="https://github.com/DataOpsInnovator/servicing-ledger-platform/tree/main/docs/adr" target="_blank" rel="noopener noreferrer">Decision records ↗</a> · <a href="https://github.com/DataOpsInnovator/servicing-ledger-platform/blob/main/docs/roadmap-and-validation.md" target="_blank" rel="noopener noreferrer">Roadmap and validation plan ↗</a></p>
+<p><a href="../index.html#work">← Back to selected work</a></p></div></section></main>
+<footer><div class="shell"><span>© <span id="year">2026</span> Mesfin Getachew</span><a href="../index.html">Portfolio home</a></div></footer><script src="../assets/js/main.js"></script></body></html>
